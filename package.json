@@ -5,9 +5,11 @@
   "dependencies": {
     "@material-ui/core": "^3.0.3",
     "axios": "^0.18.0",
+    "babel-plugin-module-alias": "^1.6.0",
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
     "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.5",
     "redux": "^4.0.0",
     "redux-axios-middleware": "^4.0.0",
@@ -22,11 +24,13 @@
     "lint": "./node_modules/eslint/bin/eslint.js src"
   },
   "devDependencies": {
+    "babel-preset-flow": "^6.23.0",
     "eslint": "^5.5.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jest": "^21.22.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-react": "^7.11.1"
+    "eslint-plugin-react": "^7.11.1",
+    "flow-bin": "^0.80.0"
   }
 }

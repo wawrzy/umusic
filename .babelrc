@@ -1,0 +1,9 @@
+{
+  "presets": ["flow"],
+  "plugins": ["module-alias", [
+    {
+      "src": "./src/components",
+      "expose": "Components"
+    }
+  ]]
+}
