@@ -1,13 +1,10 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { MuiThemeProvider } from '@material-ui/core/styles';
-import {
-  BrowserRouter as Router,
-  Route,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import store from '../../store';
 import theme from '../../theme';
-import { Home } from '../../components';
+import { Home } from '../Home/Home';
 
 const App = () => (
   <Provider store={store}>
