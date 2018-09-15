@@ -3,7 +3,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const Home = ({ app }) => (
+type THomeProps = {
+  app: {
+    app: string,
+  },
+};
+
+const Home = ({ app }: THomeProps) => (
   <div>
     { app.app }
   </div>
