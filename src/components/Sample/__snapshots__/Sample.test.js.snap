@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should renders without ui change 1`] = `
+<button
+  type="button"
+>
+  sample
+  bite
+</button>
+`;
