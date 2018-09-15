@@ -4,7 +4,7 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import store from '../../store';
 import theme from '../../theme';
-import Home from '../Home/Home';
+import { Home } from '../../components';
 
 const App = () => (
   <Provider store={store}>
