@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.0.3",
+    "@storybook/addon-knobs": "^3.4.10",
     "axios": "^0.18.0",
     "babel-eslint": "^9.0.0",
     "eslint-plugin-flowtype": "^2.50.0",
@@ -23,16 +24,25 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "lint": "./node_modules/eslint/bin/eslint.js src",
-    "flow": "./node_modules/flow-bin/cli.js"
+    "flow": "./node_modules/flow-bin/cli.js",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^3.4.10",
+    "@storybook/addon-links": "^3.4.10",
+    "@storybook/addons": "^3.4.10",
+    "@storybook/react": "^3.4.10",
+    "babel-core": "^6.26.3",
     "babel-preset-flow": "^6.23.0",
+    "babel-runtime": "^6.26.0",
     "eslint": "^5.5.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jest": "^21.22.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.1",
-    "flow-bin": "^0.80.0"
+    "flow-bin": "^0.80.0",
+    "react-test-renderer": "^16.5.1"
   }
 }

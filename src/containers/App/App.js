@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 import store from '../../store';
 import theme from '../../theme';
-import Home from '../Home/Home';
+import { Home } from '../../components';
 
 const App = () => (
   <Provider store={store}>
