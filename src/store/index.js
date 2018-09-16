@@ -7,13 +7,13 @@ import reducers from '../reducers';
 
 const client = axios.create({
   baseURL: 'http://url.com',
-  responseType: 'json'
+  responseType: 'json',
 });
 
 const middleware = applyMiddleware(
   thunkMiddleware,
   logger,
-  axiosMiddleware(client)
+  axiosMiddleware(client),
 );
 
 const store = createStore(reducers, middleware);
