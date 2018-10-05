@@ -4,13 +4,13 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import store from '../../store';
 import theme from '../../theme';
-import Home from '../Home/Home';
+import LoginPage from '../Auth/LoginPage';
 
 const App = () => (
   <Provider store={store}>
     <MuiThemeProvider theme={theme}>
       <Router>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={LoginPage} />
       </Router>
     </MuiThemeProvider>
   </Provider>

@@ -1,17 +1,19 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
 
 import InputForm from '../../components/Input/InputForm';
 
 const LoginPage = () => {
   const onSubmit = (e) => {
     e.preventDefault();
-    handleSubmit({ email: e.target.email.value, password: e.target.password.value });
+    console.log(e.target.email.value, e.target.password.value);
+    // handleSubmit({ email: e.target.email.value, password: e.target.password.value });
   };
   return (
     <form onSubmit={onSubmit}>
-      <InputForm name="Email" type="default" />
-      <InputForm name="Password" type="password" />
-      <button type="submit"> ok </button>
+      <InputForm id="email" name="Email" type="default" />
+      <InputForm id="password" name="Password" type="password" />
+      <Button variant="contained" color="green" type="submit"> ok </Button>
     </form>
   );
 };

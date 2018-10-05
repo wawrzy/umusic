@@ -4,13 +4,14 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 
 type Props = {
+  id: string,
   name: string,
   type: string,
 }
 
-const InputForm = ({ name, type }: Props) => (
+const InputForm = ({ id, name, type }: Props) => (
   <TextField
-    id={name}
+    id={id}
     label={name}
     type={type}
     margin="normal"
