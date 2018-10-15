@@ -3,26 +3,30 @@
 import { SUCCESS, LOAD, FAILURE } from '../actions/login/types';
 
 type TLogin = {
-
+  loginData: string,
 };
 
 const initState = {
-  loginData: [],
+  loginData: '',
 };
 
+
 const login = (state: TLogin = initState, action: any) => {
+  console.log(action);
   switch (action.type) {
     case LOAD:
       return {
-        ...state,
+        loginData: '',
       };
     case FAILURE:
       return {
-        ...state,
+        loginData: '',
       };
     case SUCCESS:
+      console.log('reducer');
+      localStorage.setItem('jwtToken', action.payload.data.token);
       return {
-        ...state, loginData: [action.payload.data],
+        loginData: action.payload.data.token,
       };
     default:
       return state;

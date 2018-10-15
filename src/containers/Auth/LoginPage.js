@@ -8,38 +8,31 @@ import { login } from '../../actions/login/action';
 import InputForm from '../../components/Input/InputForm';
 
 type Props = {
-  loginData: {
-    token: string,
-    email: string,
-    alias: string,
-  },
-  loginAction: {
-    item: Function,
-  }
+  loginAction: Function
 };
-
-const mapStateToProps = state => ({ loginData: state.login.loginData });
 
 const mapDispatchToProps = dispatch => ({
   loginAction: item => dispatch(login(item)),
 });
 
-class LoginPage extends Component<Props, any> {
+class LoginPage extends Component<Props> {
   onSubmit = (e) => {
+    const { loginAction } = this.props;
     e.preventDefault();
     loginAction({ email: e.target.email.value, password: e.target.password.value });
-    console.log(loginData);
   };
 
   render() {
     return (
       <form onSubmit={this.onSubmit}>
-        <InputForm id="email" name="Email" type="default" />
-        <InputForm id="password" name="Password" type="password" />
+        <div>
+          <InputForm id="email" name="Email" type="default" />
+          <InputForm id="password" name="Password" type="password" />
+        </div>
         <Button variant="contained" color="primary" type="submit"> ok </Button>
       </form>
     );
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
+export default connect(null, mapDispatchToProps)(LoginPage);
