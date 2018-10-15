@@ -24,15 +24,11 @@ export function login(data: dataType) {
 }
 
 export const setupSession = (userToken: string) => {
-  console.log(userToken);
-  localStorage.setItem('jwtToken', userToken);
   return {
-    types: [LOAD, SUCCESS, FAILURE],
+    type: SUCCESS,
     payload: {
-      request: {
-        data: {
-          token: userToken,
-        },
+      data: {
+        token: userToken,
       },
     },
   };

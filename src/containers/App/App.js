@@ -8,10 +8,11 @@ import store from '../../store';
 import theme from '../../theme';
 import AppGuest from './AppGuest';
 import AppHome from './AppHome';
-import { login, setupSession } from '../../actions/login/action';
+import { setupSession } from '../../actions/login/action';
 
 type Props = {
   loginData: boolean,
+  setupSession: Function,
 }
 
 const mapStateToProps = state => ({
@@ -24,11 +25,12 @@ const mapDispatchToProps = dispatch => ({
 
 class App extends Component<Props> {
   componentDidMount() {
+    const { setupSession } = this.props;
     const token = localStorage.getItem('jwtToken');
     if (!token || token === '') {
       return;
     }
-    this.props.setupSession(token);
+    setupSession(token);
   }
 
   render() {

@@ -12,7 +12,6 @@ const initState = {
 
 
 const login = (state: TLogin = initState, action: any) => {
-  console.log(action);
   switch (action.type) {
     case LOAD:
       return {
@@ -23,7 +22,6 @@ const login = (state: TLogin = initState, action: any) => {
         loginData: '',
       };
     case SUCCESS:
-      console.log('reducer');
       localStorage.setItem('jwtToken', action.payload.data.token);
       return {
         loginData: action.payload.data.token,
