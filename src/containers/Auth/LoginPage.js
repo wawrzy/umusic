@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
-import { login } from '../../actions/login/action';
+import { login } from '../../actions/auth/login';
 
 import InputForm from '../../components/Input/InputForm';
 

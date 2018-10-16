@@ -1,6 +1,13 @@
 // @flow
 
-import { SUCCESS, LOAD, FAILURE } from '../actions/login/types';
+import {
+  LOGIN_SUCCESS,
+  LOGIN_LOAD,
+  LOGIN_FAILURE,
+  REGISTER_SUCCESS,
+  REGISTER_LOAD,
+  REGISTER_FAILURE,
+} from '../actions/auth/types';
 
 type TLogin = {
   loginData: string,
@@ -11,17 +18,17 @@ const initState = {
 };
 
 
-const login = (state: TLogin = initState, action: any) => {
+export const login = (state: TLogin = initState, action: any) => {
   switch (action.type) {
-    case LOAD:
+    case LOGIN_LOAD:
       return {
         loginData: '',
       };
-    case FAILURE:
+    case LOGIN_FAILURE:
       return {
         loginData: '',
       };
-    case SUCCESS:
+    case LOGIN_SUCCESS:
       localStorage.setItem('jwtToken', action.payload.data.token);
       return {
         loginData: action.payload.data.token,
@@ -31,4 +38,21 @@ const login = (state: TLogin = initState, action: any) => {
   }
 };
 
-export default login;
+export const register = (state: TLogin = initState, action: any) => {
+  switch (action.type) {
+    case REGISTER_LOAD:
+      return {
+        loginData: '',
+      };
+    case REGISTER_FAILURE:
+      return {
+        loginData: 'Error',
+      };
+    case REGISTER_SUCCESS:
+      return {
+        loginData: 'Registration successful',
+      };
+    default:
+      return state;
+  }
+};

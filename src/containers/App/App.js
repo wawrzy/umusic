@@ -8,7 +8,7 @@ import store from '../../store';
 import theme from '../../theme';
 import AppGuest from './AppGuest';
 import AppHome from './AppHome';
-import { setupSession } from '../../actions/login/action';
+import { setupSession } from '../../actions/auth/login';
 
 type Props = {
   loginData: boolean,
