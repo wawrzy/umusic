@@ -7,6 +7,9 @@ import { withRouter } from 'react-router-dom';
 
 import { register } from '../../actions/auth/register';
 import InputForm from '../../components/Input/InputForm';
+import Wrapper from '../../components/Wrapper/Wrapper';
+
+import './Auth.css';
 
 type Props = {
   registerAction: Function,
@@ -26,19 +29,25 @@ class RegisterPage extends Component<Props> {
       password: e.target.password.value,
       alias: e.target.alias.value,
     })
-      .then(res => res.error ? console.log('ok') : history.push('/login'));
+      .then(res => (res.error ? console.log('ok') : history.push('/login')));
   };
 
   render() {
     return (
-      <form onSubmit={this.onSubmit}>
-        <div>
-          <InputForm id="email" name="Email" type="default" />
-          <InputForm id="alias" name="Pseudo" type="default" />
-          <InputForm id="password" name="Password" type="password" />
-        </div>
-        <Button variant="contained" color="primary" type="submit"> ok </Button>
-      </form>
+      <div className="AuthPage">
+        <Wrapper>
+          <form onSubmit={this.onSubmit}>
+            <div className="DisplayFlexColumn">
+              <InputForm id="email" name="Email" type="default" />
+              <InputForm id="alias" name="Pseudo" type="default" />
+              <InputForm id="password" name="Password" type="password" />
+            </div>
+            <div className="ButtonAlign">
+              <Button variant="contained" color="primary" type="submit"> Register </Button>
+            </div>
+          </form>
+        </Wrapper>
+      </div>
     );
   }
 }

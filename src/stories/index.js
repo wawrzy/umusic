@@ -6,5 +6,6 @@ import { storiesOf, configure } from '@storybook/react';
 configure(() => {
   require('../components/Input/InputForm.stories.js');
   require('../components/Button/Button.stories.js');
+  require('../components/Wrapper/Wrapper.stories.js');
   require('../components/Sample/Sample.stories.js');
 }, module);
