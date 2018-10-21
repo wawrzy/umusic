@@ -6,6 +6,9 @@ import { connect } from 'react-redux';
 import { login } from '../../actions/auth/login';
 
 import InputForm from '../../components/Input/InputForm';
+import Wrapper from '../../components/Wrapper/Wrapper';
+
+import './Auth.css';
 
 type Props = {
   loginAction: Function
@@ -24,13 +27,19 @@ class LoginPage extends Component<Props> {
 
   render() {
     return (
-      <form onSubmit={this.onSubmit}>
-        <div>
-          <InputForm id="email" name="Email" type="default" />
-          <InputForm id="password" name="Password" type="password" />
-        </div>
-        <Button variant="contained" color="primary" type="submit"> ok </Button>
-      </form>
+      <div className="AuthPage">
+        <Wrapper>
+          <form onSubmit={this.onSubmit}>
+            <div className="DisplayFlexColumn">
+              <InputForm id="email" name="Email" type="default" />
+              <InputForm id="password" name="Password" type="password" />
+            </div>
+            <div className="ButtonAlign">
+              <Button variant="contained" color="primary" type="submit"> Login </Button>
+            </div>
+          </form>
+        </Wrapper>
+      </div>
     );
   }
 }
