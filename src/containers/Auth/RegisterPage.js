@@ -3,11 +3,11 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 import { register } from '../../actions/auth/register';
 import InputForm from '../../components/Input/InputForm';
-import Wrapper from '../../components/Wrapper/Wrapper';
+import Wrapper from '../../components/AuthContainer/AuthContainer';
 
 import './Auth.css';
 
@@ -43,6 +43,9 @@ class RegisterPage extends Component<Props> {
               <InputForm id="password" name="Password" type="password" />
             </div>
             <div className="ButtonAlign">
+              <Link to="/login">
+                <Button variant="contained" color="secondary" type="submit"> Login </Button>
+              </Link>
               <Button variant="contained" color="primary" type="submit"> Register </Button>
             </div>
           </form>

@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import './Wrapper.css';
+import './AuthContainer.css';
 
 type Props = {
   children: React.Node,

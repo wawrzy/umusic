@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import TextField from '@material-ui/core/TextField';
-import Wrapper from './Wrapper';
+import Wrapper from './AuthContainer';
 
 const stories = storiesOf('Wrapper', module);
 

@@ -5,7 +5,7 @@
 
 .ButtonAlign {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   margin-top: 8px;
 }
 
@@ -14,7 +14,7 @@
       rgba(162, 51, 56, 0.25),
       rgba(6, 20, 162, 0.25)
   ),
-  url('../../images/register.jpg');
+  url('../../assets/image/register.jpg');
   left: 0;
   top: 0;
   position: fixed;
