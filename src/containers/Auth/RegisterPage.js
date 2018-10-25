@@ -8,6 +8,7 @@ import { withRouter, Link } from 'react-router-dom';
 import { register } from '../../actions/auth/register';
 import InputForm from '../../components/Input/InputForm';
 import Wrapper from '../../components/AuthContainer/AuthContainer';
+import SnackbarContainer from '../../components/SnackbarContainer/SnackbarContainer';
 
 import './Auth.css';
 
@@ -16,11 +17,26 @@ type Props = {
   history: Function,
 };
 
+type State = {
+  open: boolean,
+  messageSnackbar: string,
+  variantColor: string,
+};
+
 const mapDispatchToProps = dispatch => ({
   registerAction: item => dispatch(register(item)),
 });
 
-class RegisterPage extends Component<Props> {
+class RegisterPage extends Component<Props, State> {
+  constructor() {
+    super();
+    this.state = {
+      open: false,
+      messageSnackbar: '',
+      variantColor: '',
+    };
+  }
+
   onSubmit = (e) => {
     const { registerAction, history } = this.props;
     e.preventDefault();
@@ -29,10 +45,36 @@ class RegisterPage extends Component<Props> {
       password: e.target.password.value,
       alias: e.target.alias.value,
     })
-      .then(res => (res.error ? console.log('ok') : history.push('/login')));
+      .then(res => (res.error
+        ? this.setState({
+          open: true,
+          variantColor: 'error',
+          messageSnackbar: 'Error on register',
+        })
+        : (this.setState({
+          open: true,
+          variantColor: 'success',
+          messageSnackbar: 'Register success',
+        }), setTimeout(() => history.push('/login'), 500))));
   };
 
+  handleClose = () => {
+    this.setState({
+      open: false,
+    });
+  };
+
+  snackbarRender = (open, variantColor, messageSnackbar, handleClose) => (
+    <SnackbarContainer
+      open={open}
+      handleClose={handleClose}
+      variant={variantColor}
+      message={messageSnackbar}
+    />
+  );
+
   render() {
+    const { open, variantColor, messageSnackbar } = this.state;
     return (
       <div className="AuthPage">
         <Wrapper>
@@ -50,6 +92,7 @@ class RegisterPage extends Component<Props> {
             </div>
           </form>
         </Wrapper>
+        {this.snackbarRender(open, variantColor, messageSnackbar, this.handleClose)}
       </div>
     );
   }

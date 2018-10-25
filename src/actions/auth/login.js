@@ -13,7 +13,7 @@ export function login(data: dataType) {
     payload: {
       request: {
         method: 'post',
-        url: '/auth/login',
+        url: '/auth/signin',
         data: {
           email: data.email,
           password: data.password,
@@ -23,7 +23,7 @@ export function login(data: dataType) {
   };
 }
 
-export const setupSession = (userToken: string) => {
+export function setupSession(userToken: string) {
   return {
     type: LOGIN_SUCCESS,
     payload: {
@@ -32,4 +32,4 @@ export const setupSession = (userToken: string) => {
       },
     },
   };
-};
+}

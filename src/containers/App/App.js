@@ -1,8 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
-import { Provider } from 'react-redux';
-import { connect } from 'react-redux';
+import { Provider, connect } from 'react-redux';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import store from '../../store';
 import theme from '../../theme';
@@ -12,25 +11,25 @@ import { setupSession } from '../../actions/auth/login';
 
 type Props = {
   loginData: boolean,
-  setupSession: Function,
+  startSession: Function,
 }
 
 const mapStateToProps = state => ({
-  loginData: state.login.loginData
+  loginData: state.login.loginData,
 });
 
 const mapDispatchToProps = dispatch => ({
-  setupSession: item => dispatch(setupSession(item)),
-})
+  startSession: item => dispatch(setupSession(item)),
+});
 
 class App extends Component<Props> {
   componentDidMount() {
-    const { setupSession } = this.props;
+    const { startSession } = this.props;
     const token = localStorage.getItem('jwtToken');
     if (!token || token === '') {
       return;
     }
-    setupSession(token);
+    startSession(token);
   }
 
   render() {
