@@ -7,7 +7,7 @@ import { withRouter, Link } from 'react-router-dom';
 
 import { register } from '../../actions/auth/register';
 import InputForm from '../../components/Input/InputForm';
-import Wrapper from '../../components/AuthContainer/AuthContainer';
+import AuthContainer from '../../components/AuthContainer/AuthContainer';
 import SnackbarContainer from '../../components/SnackbarContainer/SnackbarContainer';
 
 import './Auth.css';
@@ -79,7 +79,7 @@ class RegisterPage extends Component<Props, State> {
   render() {
     return (
       <div className="AuthPage">
-        <Wrapper>
+        <AuthContainer>
           <form onSubmit={this.onSubmit}>
             <div className="DisplayFlexColumn">
               <InputForm id="email" name="Email" type="default" />
@@ -93,8 +93,8 @@ class RegisterPage extends Component<Props, State> {
               <Button variant="contained" color="primary" type="submit"> Register </Button>
             </div>
           </form>
-        </Wrapper>
-        {this.snackbarRender}
+        </AuthContainer>
+        {this.renderSnackbar}
       </div>
     );
   }
