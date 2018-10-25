@@ -37,7 +37,7 @@ class RegisterPage extends Component<Props, State> {
     };
   }
 
-  onSubmit = (e) => {
+  onSubmit = ({ e }: any) => {
     const { registerAction, history } = this.props;
     e.preventDefault();
     registerAction({
@@ -64,17 +64,19 @@ class RegisterPage extends Component<Props, State> {
     });
   };
 
-  snackbarRender = (open, variantColor, messageSnackbar, handleClose) => (
-    <SnackbarContainer
-      open={open}
-      handleClose={handleClose}
-      variant={variantColor}
-      message={messageSnackbar}
-    />
-  );
+  snackbarRender: any = () => {
+    const { open, variantColor, messageSnackbar } = this.state;
+    return (
+      <SnackbarContainer
+        open={open}
+        handleClose={this.handleClose}
+        variant={variantColor}
+        message={messageSnackbar}
+      />
+    );
+  };
 
   render() {
-    const { open, variantColor, messageSnackbar } = this.state;
     return (
       <div className="AuthPage">
         <Wrapper>
@@ -92,7 +94,7 @@ class RegisterPage extends Component<Props, State> {
             </div>
           </form>
         </Wrapper>
-        {this.snackbarRender(open, variantColor, messageSnackbar, this.handleClose)}
+        {this.snackbarRender}
       </div>
     );
   }
