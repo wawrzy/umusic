@@ -37,7 +37,7 @@ class LoginPage extends Component<Props> {
               <InputForm id="password" name="Password" type="password" />
             </div>
             <div className="ButtonAlign">
-              <Link to="/register">
+              <Link className="LinkDesign" to="/register">
                 <Button variant="contained" color="secondary" type="submit"> Register </Button>
               </Link>
               <Button variant="contained" color="primary" type="submit"> Login </Button>

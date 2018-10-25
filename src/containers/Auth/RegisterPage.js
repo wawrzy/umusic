@@ -37,7 +37,7 @@ class RegisterPage extends Component<Props, State> {
     };
   }
 
-  onSubmit = ({ e }: any) => {
+  onSubmit = (e) => {
     const { registerAction, history } = this.props;
     e.preventDefault();
     registerAction({
@@ -64,19 +64,17 @@ class RegisterPage extends Component<Props, State> {
     });
   };
 
-  renderSnackbar: any = () => {
-    const { open, variantColor, messageSnackbar } = this.state;
-    return (
-      <SnackbarContainer
-        open={open}
-        handleClose={this.handleClose}
-        variant={variantColor}
-        message={messageSnackbar}
-      />
-    );
-  };
+  renderSnackbar = (open, variantColor, messageSnackbar) => (
+    <SnackbarContainer
+      open={open}
+      handleClose={this.handleClose}
+      variant={variantColor}
+      message={messageSnackbar}
+    />
+  );
 
   render() {
+    const { open, variantColor, messageSnackbar } = this.state;
     return (
       <div className="AuthPage">
         <AuthContainer>
@@ -87,14 +85,14 @@ class RegisterPage extends Component<Props, State> {
               <InputForm id="password" name="Password" type="password" />
             </div>
             <div className="ButtonAlign">
-              <Link to="/login">
+              <Link className="LinkDesign" to="/login">
                 <Button variant="contained" color="secondary" type="submit"> Login </Button>
               </Link>
               <Button variant="contained" color="primary" type="submit"> Register </Button>
             </div>
           </form>
         </AuthContainer>
-        {this.renderSnackbar}
+        {this.renderSnackbar(open, variantColor, messageSnackbar)}
       </div>
     );
   }
