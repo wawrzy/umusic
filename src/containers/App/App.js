@@ -1,19 +1,47 @@
-import React from 'react';
-import { Provider } from 'react-redux';
+// @flow
+
+import React, { Component } from 'react';
+import { Provider, connect } from 'react-redux';
 import { MuiThemeProvider } from '@material-ui/core/styles';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
 import store from '../../store';
 import theme from '../../theme';
-import Home from '../Home/Home';
+import AppGuest from './AppGuest';
+import AppHome from './AppHome';
+import { setupSession } from '../../actions/auth/login';
 
-const App = () => (
-  <Provider store={store}>
-    <MuiThemeProvider theme={theme}>
-      <Router>
-        <Route exact path="/" component={Home} />
-      </Router>
-    </MuiThemeProvider>
-  </Provider>
-);
+type Props = {
+  loginData: boolean,
+  startSession: Function,
+}
 
-export default App;
+const mapStateToProps = state => ({
+  loginData: state.login.loginData,
+});
+
+const mapDispatchToProps = dispatch => ({
+  startSession: item => dispatch(setupSession(item)),
+});
+
+class App extends Component<Props> {
+  componentDidMount() {
+    const { startSession } = this.props;
+    const token = localStorage.getItem('jwtToken');
+    if (!token || token === '') {
+      return;
+    }
+    startSession(token);
+  }
+
+  render() {
+    const { loginData } = this.props;
+    return (
+      <Provider store={store}>
+        <MuiThemeProvider theme={theme}>
+          {loginData ? <AppHome /> : <AppGuest /> }
+        </MuiThemeProvider>
+      </Provider>
+    );
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

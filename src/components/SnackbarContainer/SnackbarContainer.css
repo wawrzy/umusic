@@ -1,0 +1,11 @@
+.success {
+  background-color: darkgreen !important;
+}
+
+.error {
+  background-color: darkred !important;
+}
+
+.SnackbarContainer {
+  justify-content: center;
+}

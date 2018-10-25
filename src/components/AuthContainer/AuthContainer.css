@@ -1,0 +1,51 @@
+@keyframes animation {
+  0%   {
+    transform: translateX(-10%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+@media (min-height: 400px) and (min-width: 400px){
+  .AuthContainer {
+    animation-name: animation;
+    animation-timing-function: ease-out;
+    animation-duration: 0.7s;
+    animation-fill-mode: both;
+    margin-left: 15%;
+    margin-right: auto;
+    margin-top: 30vh;
+    transform: translateY(-30%);
+    height: auto;
+    width: 25%;
+    background-color: rgba(238, 238, 238, 0.9);
+    border-radius: 7px;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
+    padding: 5px 20px 20px 20px;
+    overflow-y: auto;
+  }
+}
+
+@media (max-height: 400px) {
+  .AuthContainer {
+    left: 0;
+    top: 0;
+    height: 100vh;
+    background-color: rgba(238, 238, 238, 0.9);
+    padding: 5px 20px 20px 20px;
+    overflow-y: auto;
+  }
+}
+@media (max-width: 400px) {
+  .AuthContainer {
+    left: 0;
+    top: 0;
+    height: 100vh;
+    background-color: rgba(238, 238, 238, 0.9);
+    padding: 5px 20px 20px 20px;
+    overflow-y: auto;
+  }
+}
