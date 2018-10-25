@@ -64,7 +64,7 @@ class RegisterPage extends Component<Props, State> {
     });
   };
 
-  snackbarRender: any = () => {
+  renderSnackbar: any = () => {
     const { open, variantColor, messageSnackbar } = this.state;
     return (
       <SnackbarContainer

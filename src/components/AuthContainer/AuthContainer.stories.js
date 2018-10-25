@@ -3,11 +3,11 @@ import { storiesOf } from '@storybook/react';
 import TextField from '@material-ui/core/TextField';
 import Wrapper from './AuthContainer';
 
-const stories = storiesOf('Wrapper', module);
+const stories = storiesOf('AuthContainer', module);
 
 stories
-  .add('Wrapper', () => (
-    <Wrapper>
+  .add('AuthContainer', () => (
+    <AuthContainer>
       <div>
         <TextField
           id="name"
@@ -22,5 +22,5 @@ stories
           margin="normal"
         />
       </div>
-    </Wrapper>
+    </AuthContainer>
   ));

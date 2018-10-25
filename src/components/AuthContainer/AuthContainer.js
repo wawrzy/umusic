@@ -7,10 +7,10 @@ type Props = {
   children: React.Node,
 }
 
-const Wrapper = ({ children }: Props) => (
-  <div className="Wrapper">
+const AuthContainer = ({ children }: Props) => (
+  <div className="AuthContainer">
     {children}
   </div>
 );
 
-export default Wrapper;
+export default AuthContainer;

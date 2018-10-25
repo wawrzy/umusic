@@ -10,7 +10,7 @@
 }
 
 @media (min-height: 400px) and (min-width: 400px){
-  .Wrapper {
+  .AuthContainer {
     animation-name: animation;
     animation-timing-function: ease-out;
     animation-duration: 0.7s;
@@ -30,7 +30,7 @@
 }
 
 @media (max-height: 400px) {
-  .Wrapper {
+  .AuthContainer {
     left: 0;
     top: 0;
     height: 100vh;
@@ -40,7 +40,7 @@
   }
 }
 @media (max-width: 400px) {
-  .Wrapper {
+  .AuthContainer {
     left: 0;
     top: 0;
     height: 100vh;
