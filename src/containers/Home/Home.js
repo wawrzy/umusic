@@ -1,10 +1,12 @@
 // @flow
 
 import React from 'react';
+import Profile from '../Profile/Profile';
+import './Home.css';
 
 const Home = () => (
-  <div>
-    Home
+  <div className="home">
+    <Profile />
   </div>
 );
 

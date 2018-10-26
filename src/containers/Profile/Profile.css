@@ -1,0 +1,98 @@
+.profileComponent {
+  left: 0;
+  top: 0;
+  bottom: 100%;
+  right: 100%;
+  position: fixed;
+  width: 100%;
+  height: 40%;
+  background-image: url("../../assets/image/background-1.jpg");
+  background-size: cover;
+}
+
+.paper {
+  margin: 15% 5% 50% 5%;
+  padding-bottom: 50%;
+  width: 90%;
+  height: 60%;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.editBtn {
+  margin: -5% auto 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.avatar {
+  display: block;
+  margin: -5% auto 0 auto;
+  justify-content: center;
+  width: 150px !important;
+  height: 150px !important;
+}
+
+.friendAvatar {
+  display: flex;
+  margin-top: 10%;
+  margin-right: 5%;
+  margin-left: 5%;
+  justify-content: center;
+  width: 50px !important;
+  height: 50px !important;
+}
+
+.listAvatar {
+  display: flex;
+  justify-content: center;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 20px;
+  padding-left: 20px;
+  width: 40%;
+}
+
+.infoTxt {
+  display: block;
+  height: 20%;
+  padding-top: 3%;
+  text-align: center;
+  justify-content: center;
+  width: 40%;
+  flex-flow: row wrap;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.infoTxtName {
+  font-weight: bold;
+  margin-bottom: 1%;
+  color: #000032;
+  font-family: Blippo, fantasy;
+  font-size: 30px;
+  display: block;
+}
+
+.infoTxtMail {
+  font-weight: bold;
+  margin-bottom: 1%;
+  color: #000032;
+  font-family: Blippo, fantasy;
+  font-size: 25px;
+  display: block;
+}
+
+.infoTxtLangue {
+  font-weight: bold;
+  margin-bottom: 1%;
+  color: #000032;
+  font-family: Blippo, fantasy;
+  font-size: 15px;
+  display: block;
+}
+
+.validateBtn {
+  justify-content: center;
+  font-weight: bold;
+}
