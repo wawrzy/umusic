@@ -6,14 +6,13 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { login } from '../../actions/auth/login';
 
-
 import InputForm from '../../components/Input/InputForm';
-import Wrapper from '../../components/AuthContainer/AuthContainer';
+import AuthContainer from '../../components/AuthContainer/AuthContainer';
 
 import './Auth.css';
 
 type Props = {
-  loginAction: Function
+  loginAction: Function,
 };
 
 const mapDispatchToProps = dispatch => ({
@@ -21,16 +20,19 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class LoginPage extends Component<Props> {
-  onSubmit = (e) => {
+  onSubmit = e => {
     const { loginAction } = this.props;
     e.preventDefault();
-    loginAction({ email: e.target.email.value, password: e.target.password.value });
+    loginAction({
+      email: e.target.email.value,
+      password: e.target.password.value,
+    });
   };
 
   render() {
     return (
       <div className="AuthPage">
-        <Wrapper>
+        <AuthContainer>
           <form onSubmit={this.onSubmit}>
             <div className="DisplayFlexColumn">
               <InputForm id="email" name="Email" type="default" />
@@ -38,15 +40,22 @@ class LoginPage extends Component<Props> {
             </div>
             <div className="ButtonAlign">
               <Link className="LinkDesign" to="/register">
-                <Button variant="contained" color="secondary" type="submit"> Register </Button>
+                <Button variant="contained" color="secondary" type="submit">
+                  Register
+                </Button>
               </Link>
-              <Button variant="contained" color="primary" type="submit"> Login </Button>
+              <Button variant="contained" color="primary" type="submit">
+                Login
+              </Button>
             </div>
           </form>
-        </Wrapper>
+        </AuthContainer>
       </div>
     );
   }
 }
 
-export default connect(null, mapDispatchToProps)(LoginPage);
+export default connect(
+  null,
+  mapDispatchToProps,
+)(LoginPage);
