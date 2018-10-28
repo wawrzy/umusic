@@ -37,25 +37,28 @@ class RegisterPage extends Component<Props, State> {
     };
   }
 
-  onSubmit = ({ e }: any) => {
+  onSubmit = e => {
     const { registerAction, history } = this.props;
     e.preventDefault();
     registerAction({
       email: e.target.email.value,
       password: e.target.password.value,
       alias: e.target.alias.value,
-    })
-      .then(res => (res.error
-        ? this.setState({
-          open: true,
-          variantColor: 'error',
-          messageSnackbar: 'Error on register',
-        })
-        : (this.setState({
-          open: true,
-          variantColor: 'success',
-          messageSnackbar: 'Register success',
-        }), setTimeout(() => history.push('/login'), 500))));
+    }).then(
+      res =>
+        res.error
+          ? this.setState({
+              open: true,
+              variantColor: 'error',
+              messageSnackbar: 'Error on register',
+            })
+          : (this.setState({
+              open: true,
+              variantColor: 'success',
+              messageSnackbar: 'Register success',
+            }),
+            setTimeout(() => history.push('/login'), 500)),
+    );
   };
 
   handleClose = () => {
@@ -64,8 +67,9 @@ class RegisterPage extends Component<Props, State> {
     });
   };
 
-  renderSnackbar: any = () => {
+  renderSnackbar = () => {
     const { open, variantColor, messageSnackbar } = this.state;
+
     return (
       <SnackbarContainer
         open={open}
@@ -87,17 +91,24 @@ class RegisterPage extends Component<Props, State> {
               <InputForm id="password" name="Password" type="password" />
             </div>
             <div className="ButtonAlign">
-              <Link to="/login">
-                <Button variant="contained" color="secondary" type="submit"> Login </Button>
+              <Link className="LinkDesign" to="/login">
+                <Button variant="contained" color="secondary" type="submit">
+                  Login
+                </Button>
               </Link>
-              <Button variant="contained" color="primary" type="submit"> Register </Button>
+              <Button variant="contained" color="primary" type="submit">
+                Register
+              </Button>
             </div>
           </form>
         </AuthContainer>
-        {this.renderSnackbar}
+        {this.renderSnackbar()}
       </div>
     );
   }
 }
 
-export default connect(null, mapDispatchToProps)(withRouter(RegisterPage));
+export default connect(
+  null,
+  mapDispatchToProps,
+)(withRouter(RegisterPage));
