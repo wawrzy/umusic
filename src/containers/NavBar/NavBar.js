@@ -14,7 +14,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Drawer from '@material-ui/core/Drawer';
 import { withRouter } from 'react-router-dom';
 
-// import MenuList from './MenuList';
+import MenuList from './MenuList';
 
 import './NavBar.css';
 
@@ -45,6 +45,7 @@ class NavBar extends Component<Props, State> {
       [open]: value,
     });
   };
+
   handleProfile = () => {
     const { history, userId } = this.props;
     history.push(`/profile/${userId}`);
@@ -71,16 +72,26 @@ class NavBar extends Component<Props, State> {
   };
 
   render() {
-    const { title, notificationNumber, openProfile } = this.props;
+    const { title, notificationNumber } = this.props;
+    const { openDrawer } = this.state;
     return (
       <div>
         <AppBar position="static">
           <Toolbar className="Toolbar">
             <div className="alignItem">
-              <button>
+              <IconButton color="inherit" onClick={() => this.handleOpen('openDrawer', true)}>
                 <MenuIcon />
-              </button>
-              <Drawer />
+              </IconButton>
+              <Drawer open={openDrawer} onClose={() => this.handleOpen('openDrawer', false)}>
+                <div
+                  tabIndex={0}
+                  role="button"
+                  onClick={() => this.handleOpen('openDrawer', false)}
+                  onKeyDown={() => this.handleOpen('openDrawer', false)}
+                >
+                  <MenuList />
+                </div>
+              </Drawer>
               <Link className="LinkDesign" to="/">
                 <div>{title}</div>
               </Link>
