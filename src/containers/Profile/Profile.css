@@ -20,22 +20,37 @@
 }
 
 .editBtn {
-  margin: -5% auto 0 auto;
-  display: flex;
+  width: 50px !important;
+  height: 50px !important;
+}
+
+.editBtnPosition  {
+  position: relative;
+  z-index: 1;
+  margin: -100px 25% 3% 75%;
+  color: red !important;
+}
+
+.avatarAndButton {
+  position: relative;
+  display: block;
   justify-content: center;
+  z-index: 0;
 }
 
 .avatar {
-  display: block;
-  margin: -5% auto 0 auto;
+  display: inline-flex;
+  margin: -75px auto 0 auto;
   justify-content: center;
   width: 150px !important;
   height: 150px !important;
+  position: relative;
+  z-index: 1;
 }
 
 .friendAvatar {
   display: flex;
-  margin-top: 10%;
+  margin-top: 3%;
   margin-right: 5%;
   margin-left: 5%;
   justify-content: center;
@@ -43,23 +58,26 @@
   height: 50px !important;
 }
 
+.list {
+  width: 40%;
+  padding-right: auto;
+  padding-left: auto;
+  justify-content: center;
+  text-align: center;
+}
+
 .listAvatar {
   display: flex;
-  justify-content: center;
-  margin-right: auto;
-  margin-left: auto;
-  padding-right: 20px;
-  padding-left: 20px;
-  width: 40%;
+  flex-direction: row;
 }
 
 .infoTxt {
   display: block;
-  height: 20%;
+  height: 40%;
   padding-top: 3%;
   text-align: center;
   justify-content: center;
-  width: 40%;
+  width: 70%;
   flex-flow: row wrap;
   margin-left: auto;
   margin-right: auto;
@@ -70,7 +88,7 @@
   margin-bottom: 1%;
   color: #000032;
   font-family: Blippo, fantasy;
-  font-size: 30px;
+  font-size: 50px;
   display: block;
 }
 
@@ -79,7 +97,7 @@
   margin-bottom: 1%;
   color: #000032;
   font-family: Blippo, fantasy;
-  font-size: 25px;
+  font-size: 30px;
   display: block;
 }
 
@@ -88,7 +106,7 @@
   margin-bottom: 1%;
   color: #000032;
   font-family: Blippo, fantasy;
-  font-size: 15px;
+  font-size: 20px;
   display: block;
 }
 

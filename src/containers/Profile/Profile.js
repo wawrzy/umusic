@@ -11,9 +11,11 @@
 import React, { Component } from 'react';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import Avatar from './Avatar';
+import AddIcon from '@material-ui/icons/Add';
 import TextField from '@material-ui/core/es/TextField/TextField';
-
+import Icon from '@material-ui/core/Icon';
+import { withStyles } from '@material-ui/core/styles';
+import Avatar from './Avatar';
 import './Profile.css';
 
 const getFriends = e => (
@@ -25,7 +27,7 @@ class Profile extends Component {
     super(props);
     this.state = {
       edit: false,
-      name: 'Henry vendeurdeshit',
+      name: 'Henry Jesaispas',
       mail: 'adresse@email.com',
       langue: 'Français',
     };
@@ -60,18 +62,24 @@ class Profile extends Component {
       name: 'Julien',
       picture: 'https://wawrzy.github.io/img/wawrzy.JPG',
     };
+    const D = {
+      name: 'Mohammed',
+      picture: 'https://wawrzy.github.io/img/wawrzy.JPG',
+    };
     friends.push(A);
     friends.push(B);
     friends.push(C);
-    console.log(friends);
+
     return (
       <div className="profileComponent">
         <form onSubmit={this.onSubmit} className="all">
           <Paper className="paper" elevation={2}>
             <Avatar cN="avatar" user="me" img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRT4HnS1e8I3coO-06RSBo_il9PbjHX9d7I9bG2MDFqMRHwIhvWcg" />
-            <Button variant="fab" className="editBtn" onClick={this.editInfo}>
-              edit
-            </Button>
+            <div className="editBtnPosition">
+              <Button variant="fab" color="primary" aria-label="Edit" className="editBtn" onClick={e => this.editInfo(e)}>
+                <AddIcon />
+              </Button>
+            </div>
             {this.state.edit === false
               ? (
                 <div className="infoTxt">
@@ -93,13 +101,13 @@ class Profile extends Component {
                       {this.state.name}
                     </TextField>
                   </div>
-                  <div>
-                    <TextField defaultValue={this.state.mail} className="infoTxtMail">
+                  <div className="infoTxtMail">
+                    <TextField defaultValue={this.state.mail}>
                       {this.state.mail}
                     </TextField>
                   </div>
-                  <div>
-                    <TextField defaultValue={this.state.langue} className="infoTxtLangue">
+                  <div className="infoTxtLangue">
+                    <TextField defaultValue={this.state.langue}>
                       {this.state.langue}
                     </TextField>
                   </div>
@@ -109,8 +117,10 @@ class Profile extends Component {
                 </div>
               )
             }
-            <div className="listAvatar">
-              {friends.map(e => getFriends(e))}
+            <div className="list">
+              <div className="listAvatar">
+                {friends.map(e => getFriends(e))}
+              </div>
             </div>
           </Paper>
         </form>
