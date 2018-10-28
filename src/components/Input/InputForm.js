@@ -9,15 +9,10 @@ type Props = {
   id: string,
   name: string,
   type: string,
-}
+};
 
 const InputForm = ({ id, name, type }: Props) => (
-  <TextField
-    id={id}
-    label={name}
-    type={type}
-    margin="normal"
-  />
+  <TextField id={id} label={name} type={type} margin="normal" />
 );
 
 export default InputForm;

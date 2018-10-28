@@ -1,0 +1,8 @@
+.LinkDesign {
+  text-decoration: none;
+  color: white;
+}
+.Toolbar {
+  display: flex;
+  justify-content: space-between;
+}
