@@ -41,14 +41,16 @@ class NavBar extends Component<Props, State> {
 
   handleOpen = (open, value) => {
     this.setState({
-      ...this.state, [open]: value,
+      ...this.state,
+      [open]: value,
     });
   };
   handleProfile = () => {
     const { history, userId } = this.props;
     history.push(`/profile/${userId}`);
     this.setState({
-      ...this.state, openProfile: false,
+      ...this.state,
+      openProfile: false,
     });
   };
 
@@ -79,7 +81,7 @@ class NavBar extends Component<Props, State> {
                 <MenuIcon />
               </button>
               <Drawer />
-              <Link className="LinkDesign" to="/" >
+              <Link className="LinkDesign" to="/">
                 <div>{title}</div>
               </Link>
             </div>
