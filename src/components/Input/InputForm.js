@@ -9,10 +9,12 @@ type Props = {
   id: string,
   name: string,
   type: string,
+  autoComplete: string,
 }
 
-const InputForm = ({ id, name, type }: Props) => (
+const InputForm = ({ autoComplete, id, name, type }: Props) => (
   <TextField
+    autoComplete={autoComplete}
     id={id}
     label={name}
     type={type}
