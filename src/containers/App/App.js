@@ -10,12 +10,12 @@ import AppHome from './AppHome';
 import { setupSession } from '../../actions/auth/login';
 
 type Props = {
-  loginData: boolean,
+  authorization: string,
   startSession: Function,
-}
+};
 
 const mapStateToProps = state => ({
-  loginData: state.login.loginData,
+  authorization: state.login.authorization,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -33,15 +33,19 @@ class App extends Component<Props> {
   }
 
   render() {
-    const { loginData } = this.props;
+    const { authorization } = this.props;
+
     return (
       <Provider store={store}>
         <MuiThemeProvider theme={theme}>
-          {loginData ? <AppHome /> : <AppGuest /> }
+          {authorization !== '' ? <AppHome /> : <AppGuest />}
         </MuiThemeProvider>
       </Provider>
     );
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(App);

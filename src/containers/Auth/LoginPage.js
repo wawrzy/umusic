@@ -8,12 +8,18 @@ import { login } from '../../actions/auth/login';
 
 import InputForm from '../../components/Input/InputForm';
 import AuthContainer from '../../components/AuthContainer/AuthContainer';
+import SnackbarContainer from '../../components/SnackbarContainer/SnackbarContainer';
 
 import './Auth.css';
 
 type Props = {
   loginAction: Function,
+  error: string,
 };
+
+const mapStateToProps = state => ({
+  error: state.login.error,
+});
 
 const mapDispatchToProps = dispatch => ({
   loginAction: item => dispatch(login(item)),
@@ -27,6 +33,12 @@ class LoginPage extends Component<Props> {
       email: e.target.email.value,
       password: e.target.password.value,
     });
+  };
+
+  renderError = () => {
+    const { error } = this.props;
+
+    return <SnackbarContainer variant="error" message={error} />;
   };
 
   render() {
@@ -50,12 +62,13 @@ class LoginPage extends Component<Props> {
             </div>
           </form>
         </AuthContainer>
+        {this.renderError()}
       </div>
     );
   }
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(LoginPage);
