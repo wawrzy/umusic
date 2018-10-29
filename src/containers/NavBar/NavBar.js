@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -12,7 +12,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import MenuIcon from '@material-ui/icons/Menu';
 import Drawer from '@material-ui/core/Drawer';
-import { withRouter } from 'react-router-dom';
 
 import MenuList from './MenuList';
 
@@ -23,6 +22,7 @@ type Props = {
   notificationNumber: number,
   userId: number,
   history: Function,
+  logoutCallback: Function,
 };
 
 type State = {
@@ -40,19 +40,19 @@ class NavBar extends Component<Props, State> {
   }
 
   handleOpen = (open, value) => {
-    this.setState({
-      ...this.state,
+    this.setState(prevState => ({
+      ...prevState,
       [open]: value,
-    });
+    }));
   };
 
   handleProfile = () => {
     const { history, userId } = this.props;
     history.push(`/profile/${userId}`);
-    this.setState({
-      ...this.state,
+    this.setState(prevState => ({
+      ...prevState,
       openProfile: false,
-    });
+    }));
   };
 
   renderMenu = () => {
