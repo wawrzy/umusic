@@ -29,8 +29,8 @@ class Home extends Component<Props> {
 
   render() {
     return (
-      <div className="HomePage">
-        <form onSubmit={this.onSubmit}>
+      <div>
+        <form className="FormPosition" onSubmit={this.onSubmit}>
           <div className="DisplayFlexColumn">
             <InputForm
               id="name"
@@ -51,6 +51,7 @@ class Home extends Component<Props> {
             </Button>
           </div>
         </form>
+        <div className="ImageBackground" />
       </div>
     );
   }
