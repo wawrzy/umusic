@@ -12,7 +12,7 @@ const MenuList = () => (
         <ListItemIcon>
           <InboxIcon />
         </ListItemIcon>
-        <ListItemText primary="salut" />
+        <ListItemText primary="" />
       </ListItem>
     </List>
   </div>

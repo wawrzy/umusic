@@ -71,9 +71,24 @@ class NavBar extends Component<Props, State> {
     );
   };
 
+  renderDrawer = () => {
+    const { openDrawer } = this.state;
+    return (
+      <Drawer open={openDrawer} onClose={() => this.handleOpen('openDrawer', false)}>
+        <div
+          tabIndex={0}
+          role="button"
+          onClick={() => this.handleOpen('openDrawer', false)}
+          onKeyDown={() => this.handleOpen('openDrawer', false)}
+        >
+          <MenuList />
+        </div>
+      </Drawer>
+    );
+  };
+
   render() {
     const { title, notificationNumber } = this.props;
-    const { openDrawer } = this.state;
     return (
       <div>
         <AppBar position="static">
@@ -82,16 +97,7 @@ class NavBar extends Component<Props, State> {
               <IconButton color="inherit" onClick={() => this.handleOpen('openDrawer', true)}>
                 <MenuIcon />
               </IconButton>
-              <Drawer open={openDrawer} onClose={() => this.handleOpen('openDrawer', false)}>
-                <div
-                  tabIndex={0}
-                  role="button"
-                  onClick={() => this.handleOpen('openDrawer', false)}
-                  onKeyDown={() => this.handleOpen('openDrawer', false)}
-                >
-                  <MenuList />
-                </div>
-              </Drawer>
+              {this.renderDrawer()}
               <Link className="LinkDesign" to="/">
                 <div>{title}</div>
               </Link>

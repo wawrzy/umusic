@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import Home from '../Home/Home';
 import NotFound from '../../components/NotFound';
 import AppNavBar from './AppNavBar';
-import ProfilePage from '../ProfilePage/ProfilePage';
+import ProfilePage from '../Profile/Profile';
 
 const AppHome = () => (
   <Router>
