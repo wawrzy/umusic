@@ -7,6 +7,8 @@ import {
   REGISTER_SUCCESS,
   REGISTER_LOAD,
   REGISTER_FAILURE,
+  FETCH_PROFILE_SUCCESS,
+  LOGOUT,
 } from '../actions/auth/types';
 
 type TLogin = {
@@ -15,6 +17,7 @@ type TLogin = {
   alias: string,
   status: string,
   error: string,
+  userId: string,
 };
 
 const initState = {
@@ -23,6 +26,7 @@ const initState = {
   authorization: '',
   status: '',
   error: '',
+  userId: '',
 };
 
 export const login = (state: TLogin = initState, action: any) => {
@@ -44,7 +48,21 @@ export const login = (state: TLogin = initState, action: any) => {
         authorization: action.payload.data.token,
         email: action.payload.data.email,
         alias: action.payload.data.alias,
+        userId: action.payload.data._id,
         error: '',
+      };
+    case FETCH_PROFILE_SUCCESS:
+      return {
+        ...state,
+        email: action.payload.data.email,
+        alias: action.payload.data.alias,
+        userId: action.payload.data.id,
+        error: '',
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        authorization: '',
       };
     default:
       return state;

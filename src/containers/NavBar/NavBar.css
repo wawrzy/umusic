@@ -1,0 +1,15 @@
+.LinkDesign {
+  text-decoration: none;
+  color: white;
+}
+.Toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+.alignItem {
+  display: flex;
+  align-items: center;
+}
+.SizeList {
+  width: 250px;
+}
