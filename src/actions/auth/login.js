@@ -1,6 +1,6 @@
 // @flow
 
-import { LOGIN_SUCCESS, LOGIN_LOAD, LOGIN_FAILURE } from './types';
+import { LOGIN_SUCCESS, LOGIN_LOAD, LOGIN_FAILURE, LOGOUT } from './types';
 
 type dataType = {
   email: string,
@@ -26,6 +26,7 @@ export function login(data: dataType) {
 export function setupSession(userToken: string) {
   return {
     type: LOGIN_SUCCESS,
+    LOGOUT,
     payload: {
       data: {
         token: userToken,

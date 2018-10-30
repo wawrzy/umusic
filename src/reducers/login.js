@@ -7,6 +7,7 @@ import {
   REGISTER_SUCCESS,
   REGISTER_LOAD,
   REGISTER_FAILURE,
+  LOGOUT,
 } from '../actions/auth/types';
 
 type TLogin = {
@@ -16,7 +17,6 @@ type TLogin = {
 const initState = {
   loginData: '',
 };
-
 
 export const login = (state: TLogin = initState, action: any) => {
   switch (action.type) {
@@ -32,6 +32,10 @@ export const login = (state: TLogin = initState, action: any) => {
       localStorage.setItem('jwtToken', action.payload.data.token);
       return {
         loginData: action.payload.data.token,
+      };
+    case LOGOUT:
+      return {
+        loginData: '',
       };
     default:
       return state;
