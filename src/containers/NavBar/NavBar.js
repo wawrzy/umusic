@@ -39,20 +39,36 @@ class NavBar extends Component<Props, State> {
     };
   }
 
-  handleOpen = (open, value) => {
-    this.setState(prevState => ({
-      ...prevState,
-      [open]: value,
-    }));
+  handleOpenDropdown = () => {
+    this.setState({
+      openProfile: true,
+    });
+  };
+
+  handleCloseDropdown = () => {
+    this.setState({
+      openProfile: false,
+    });
+  };
+
+  handleOpenDrawer = () => {
+    this.setState({
+      openDrawer: true,
+    });
+  };
+
+  handleCloseDrawer = () => {
+    this.setState({
+      openDrawer: false,
+    });
   };
 
   handleProfile = () => {
     const { history, userId } = this.props;
     history.push(`/profile/${userId}`);
-    this.setState(prevState => ({
-      ...prevState,
+    this.setState({
       openProfile: false,
-    }));
+    });
   };
 
   renderMenu = () => {
@@ -63,7 +79,7 @@ class NavBar extends Component<Props, State> {
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
         open={openProfile}
-        onClose={() => this.handleOpen('openProfile', false)}
+        onClose={this.handleCloseDropdown}
       >
         <MenuItem onClick={this.handleProfile}>Profile</MenuItem>
         <MenuItem onClick={logoutCallback}>Disconnection</MenuItem>
@@ -74,12 +90,12 @@ class NavBar extends Component<Props, State> {
   renderDrawer = () => {
     const { openDrawer } = this.state;
     return (
-      <Drawer open={openDrawer} onClose={() => this.handleOpen('openDrawer', false)}>
+      <Drawer open={openDrawer} onClose={this.handleCloseDrawer}>
         <div
           tabIndex={0}
           role="button"
-          onClick={() => this.handleOpen('openDrawer', false)}
-          onKeyDown={() => this.handleOpen('openDrawer', false)}
+          onClick={this.handleCloseDrawer}
+          onKeyDown={this.handleCloseDrawer}
         >
           <MenuList />
         </div>
@@ -94,7 +110,7 @@ class NavBar extends Component<Props, State> {
         <AppBar position="static">
           <Toolbar className="Toolbar">
             <div className="alignItem">
-              <IconButton color="inherit" onClick={() => this.handleOpen('openDrawer', true)}>
+              <IconButton color="inherit" onClick={this.handleOpenDrawer}>
                 <MenuIcon />
               </IconButton>
               {this.renderDrawer()}
@@ -108,7 +124,7 @@ class NavBar extends Component<Props, State> {
                   <NotificationsIcon />
                 </Badge>
               </IconButton>
-              <IconButton onClick={() => this.handleOpen('openProfile', true)} color="inherit">
+              <IconButton onClick={this.handleOpenDropdown} color="inherit">
                 <AccountCircle />
               </IconButton>
             </div>
