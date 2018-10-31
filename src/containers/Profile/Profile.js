@@ -13,8 +13,6 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import TextField from '@material-ui/core/es/TextField/TextField';
-import Icon from '@material-ui/core/Icon';
-import { withStyles } from '@material-ui/core/styles';
 import Avatar from './Avatar';
 import './Profile.css';
 
@@ -60,10 +58,6 @@ class Profile extends Component {
     };
     const C = {
       name: 'Julien',
-      picture: 'https://wawrzy.github.io/img/wawrzy.JPG',
-    };
-    const D = {
-      name: 'Mohammed',
       picture: 'https://wawrzy.github.io/img/wawrzy.JPG',
     };
     friends.push(A);
