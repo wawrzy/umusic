@@ -9,6 +9,7 @@ import Badge from '@material-ui/core/Badge';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MenuItem from '@material-ui/core/MenuItem';
+import Typography from '@material-ui/core/Typography';
 import Menu from '@material-ui/core/Menu';
 import MenuIcon from '@material-ui/icons/Menu';
 import Drawer from '@material-ui/core/Drawer';
@@ -20,7 +21,7 @@ import './NavBar.css';
 type Props = {
   title: string,
   notificationNumber: number,
-  userId: number,
+  userId: string,
   history: Function,
   logoutCallback: Function,
 };
@@ -105,6 +106,7 @@ class NavBar extends Component<Props, State> {
 
   render() {
     const { title, notificationNumber } = this.props;
+
     return (
       <div>
         <AppBar position="static">
@@ -115,7 +117,9 @@ class NavBar extends Component<Props, State> {
               </IconButton>
               {this.renderDrawer()}
               <Link className="LinkDesign" to="/">
-                <div>{title}</div>
+                <Typography variant="title" color="inherit">
+                  {title}
+                </Typography>
               </Link>
             </div>
             <div>

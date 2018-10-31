@@ -1,0 +1,48 @@
+.ChatMessage {
+  box-sizing: content-box;
+  max-width: 60%;
+}
+
+.message-receive {
+  float: left;
+  background-color: rgb(102, 153, 204) !important;
+  border-bottom-right-radius: 1.3em;
+  border-bottom-left-radius: 1.3em;
+  border-top-right-radius: 1.3em;
+}
+
+.message-send {
+  float: right;
+  background-color: '#f1f0f0';
+  border-top-left-radius: 1.3em;
+  border-bottom-left-radius: 1.3em;
+  border-top-right-radius: 1.3em;
+}
+
+.color-text-receive {
+  color: white !important;
+}
+
+.color-text-send {
+  color: black !important;
+}
+
+.padding-12 {
+  padding: 12px;
+}
+
+.padding-8 {
+  padding: 8px;
+}
+
+.alias {
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 1.1;
+  margin-bottom: 1px;
+  overflow: hidden;
+  padding-left: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

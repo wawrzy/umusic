@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setupSession } from '../../actions/auth/login';
+import { setupSession, fetchProfile } from '../../actions/auth/login';
 
 import NavBar from '../NavBar/NavBar';
 
@@ -10,17 +10,27 @@ type Props = {
   history: Function,
   userId: string,
   logout: Function,
+  getProfile: Function,
+  authorization: string,
 };
 
 const mapStateToProps = state => ({
-  userId: state.login.loginData,
+  userId: state.login.userId,
+  authorization: state.login.authorization,
 });
 
 const mapDispatchToProps = dispatch => ({
   logout: item => dispatch(setupSession(item)),
+  getProfile: authorization => dispatch(fetchProfile(authorization)),
 });
 
 class AppNavBar extends Component<Props> {
+  componentDidMount() {
+    const { getProfile, authorization } = this.props;
+
+    getProfile(authorization);
+  }
+
   logoutCallback = () => {
     const { history, logout } = this.props;
     localStorage.removeItem('jwtToken');
