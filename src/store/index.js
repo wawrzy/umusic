@@ -5,7 +5,7 @@ import axios from 'axios';
 import axiosMiddleware from 'redux-axios-middleware';
 
 import reducers from '../reducers';
-import socketMiddleware from '../middlewares/socket';
+import { socketMiddleware } from '../middlewares/socket';
 
 const client = axios.create({
   baseURL: 'http://localhost:3100/api',

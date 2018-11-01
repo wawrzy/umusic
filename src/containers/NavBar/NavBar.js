@@ -15,6 +15,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Drawer from '@material-ui/core/Drawer';
 
 import MenuList from './MenuList';
+import { socket } from '../../middlewares/socket';
 
 import './NavBar.css';
 
@@ -32,12 +33,17 @@ type State = {
 };
 
 class NavBar extends Component<Props, State> {
-  constructor() {
-    super();
-    this.state = {
-      openProfile: false,
-      openDrawer: false,
-    };
+  state = {
+    openProfile: false,
+    openDrawer: false,
+  };
+
+  componentDidMount() {
+    socket.on('redirectroom', ({ roomId }) => {
+      const { history } = this.props;
+
+      history.push(`/room/${roomId}`);
+    });
   }
 
   handleOpenDropdown = () => {
@@ -75,6 +81,7 @@ class NavBar extends Component<Props, State> {
   renderMenu = () => {
     const { openProfile } = this.state;
     const { logoutCallback } = this.props;
+
     return (
       <Menu
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
@@ -90,6 +97,7 @@ class NavBar extends Component<Props, State> {
 
   renderDrawer = () => {
     const { openDrawer } = this.state;
+
     return (
       <Drawer open={openDrawer} onClose={this.handleCloseDrawer}>
         <div

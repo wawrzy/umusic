@@ -1,0 +1,20 @@
+.Chat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 8px;
+}
+
+.ChatWidth {
+  width: 35%;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  max-height: 400px;
+}
+
+.ChatInput {
+  width: 35% !important;
+}
