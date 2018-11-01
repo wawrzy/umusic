@@ -15,28 +15,20 @@ import './Auth.css';
 type Props = {
   registerAction: Function,
   history: Function,
+  error: string,
+  status: string,
 };
 
-type State = {
-  open: boolean,
-  messageSnackbar: string,
-  variantColor: string,
-};
+const mapStateToProps = state => ({
+  error: state.register.error,
+  status: state.register.status,
+});
 
 const mapDispatchToProps = dispatch => ({
   registerAction: item => dispatch(register(item)),
 });
 
-class RegisterPage extends Component<Props, State> {
-  constructor() {
-    super();
-    this.state = {
-      open: false,
-      messageSnackbar: '',
-      variantColor: '',
-    };
-  }
-
+class RegisterPage extends Component<Props> {
   onSubmit = e => {
     const { registerAction, history } = this.props;
     e.preventDefault();
@@ -46,38 +38,20 @@ class RegisterPage extends Component<Props, State> {
       alias: e.target.alias.value,
     }).then(
       res =>
-        res.error
-          ? this.setState({
-              open: true,
-              variantColor: 'error',
-              messageSnackbar: 'Error on register',
-            })
-          : (this.setState({
-              open: true,
-              variantColor: 'success',
-              messageSnackbar: 'Register success',
-            }),
-            setTimeout(() => history.push('/login'), 500)),
+        !res.error ? setTimeout(() => history.push('/login'), 500) : null,
     );
   };
 
-  handleClose = () => {
-    this.setState({
-      open: false,
-    });
+  renderError = () => {
+    const { error } = this.props;
+
+    return <SnackbarContainer variant="error" message={error} />;
   };
 
-  renderSnackbar = () => {
-    const { open, variantColor, messageSnackbar } = this.state;
+  renderStatus = () => {
+    const { status } = this.props;
 
-    return (
-      <SnackbarContainer
-        open={open}
-        handleClose={this.handleClose}
-        variant={variantColor}
-        message={messageSnackbar}
-      />
-    );
+    return <SnackbarContainer variant="success" message={status} />;
   };
 
   render() {
@@ -102,13 +76,13 @@ class RegisterPage extends Component<Props, State> {
             </div>
           </form>
         </AuthContainer>
-        {this.renderSnackbar()}
+        {this.renderError()}
       </div>
     );
   }
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(withRouter(RegisterPage));
