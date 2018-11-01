@@ -13,17 +13,23 @@ type Props = {
   createAction: Function,
 };
 
+const mapStateToProps = state => ({
+  getUser: state.login,
+});
+
 const mapDispatchToProps = dispatch => ({
   createAction: item => dispatch(createRoom(item)),
 });
 
 class Home extends Component<Props> {
   onSubmit = e => {
-    const { createAction } = this.props;
+    const { createAction, getUser } = this.props;
     e.preventDefault();
+    console.log(getUser);
     createAction({
       name: e.target.name.value,
       password: e.target.password.value,
+      authorization: getUser.authorization,
     });
   };
 
@@ -58,6 +64,6 @@ class Home extends Component<Props> {
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(Home);

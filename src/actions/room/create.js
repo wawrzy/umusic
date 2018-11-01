@@ -9,6 +9,7 @@ import {
 type dataType = {
   name: string,
   password: string,
+  authorization: string,
 };
 
 export function createRoom(data: dataType) {
@@ -18,6 +19,7 @@ export function createRoom(data: dataType) {
       request: {
         method: 'post',
         url: '/room/create',
+        headers: { Authorization: data.authorization },
         data: {
           name: data.name,
           password: data.password,
