@@ -59,13 +59,20 @@ class Chat extends React.Component<Props, State> {
     });
   };
 
+  handleSend = () => {};
+
   render() {
     return (
       <div className="Chat">
         <RootRef rootRef={this.chatContainer}>
           <ChatContainer className="ChatWidth">{this.renderMessages()}</ChatContainer>
         </RootRef>
-        <InputForm className="ChatInput" placeholder="Message" id="ChatInput" />
+        <InputForm
+          onEnterKey={this.handleSend}
+          className="ChatInput"
+          placeholder="Message"
+          id="ChatInput"
+        />
       </div>
     );
   }

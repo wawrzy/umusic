@@ -17,17 +17,14 @@ const getAlias = (isReceived, alias) => (isReceived ? alias : '');
 
 const ChatMessage = ({ message, isReceived, alias }: Props) => (
   <div className="padding-8">
-    <div className="alias">{getAlias(isReceived, alias)}</div>
+    <Typography className="alias">{getAlias(isReceived, alias)}</Typography>
     <Paper
       className={`ChatMessage message-${getPosition(isReceived)}`}
       elevation={4}
       square
       aria-describedby="cond"
     >
-      <Typography
-        className={`padding-12 color-text-${getPosition(isReceived)}`}
-        component="p"
-      >
+      <Typography className={`padding-12 color-text-${getPosition(isReceived)}`} component="p">
         {message}
       </Typography>
     </Paper>
