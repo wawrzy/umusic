@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
-import '../../containers/Profile/Profile.css';
+import './Avatar.css';
 
 type Props = {
   cN: string,

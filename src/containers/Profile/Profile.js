@@ -3,10 +3,8 @@
 import React, { Component } from 'react';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import AddIcon from '@material-ui/icons/Add';
+import EditIcon from '@material-ui/icons/Edit';
 import TextField from '@material-ui/core/es/TextField/TextField';
-import Icon from '@material-ui/core/Icon';
-import { withStyles } from '@material-ui/core/styles';
 import Avatar from '../../components/Avatar/Avatar';
 import './Profile.css';
 
@@ -69,7 +67,7 @@ class Profile extends Component {
             <Avatar cN="avatar" user="me" img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRT4HnS1e8I3coO-06RSBo_il9PbjHX9d7I9bG2MDFqMRHwIhvWcg" />
             <div className="editBtnPosition">
               <Button variant="fab" color="primary" aria-label="Edit" className="editBtn" onClick={e => this.editInfo(e)}>
-                <AddIcon />
+                <EditIcon />
               </Button>
             </div>
             {this.state.edit === false
