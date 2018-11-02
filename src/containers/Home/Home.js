@@ -11,10 +11,11 @@ import './Home.css';
 
 type Props = {
   createAction: Function,
+  authorization: string,
 };
 
 const mapStateToProps = state => ({
-  getUser: state.login,
+  authorization: state.login.authorization,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -23,13 +24,12 @@ const mapDispatchToProps = dispatch => ({
 
 class Home extends Component<Props> {
   onSubmit = e => {
-    const { createAction, getUser } = this.props;
+    const { createAction, authorization } = this.props;
     e.preventDefault();
-    console.log(getUser);
     createAction({
       name: e.target.name.value,
       password: e.target.password.value,
-      authorization: getUser.authorization,
+      authorization,
     });
   };
 
