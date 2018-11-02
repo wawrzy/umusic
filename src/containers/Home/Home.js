@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 
 import { createRoom } from '../../actions/room/create';
 import InputForm from '../../components/Input/InputForm';
-import img from '../../assets/image/wave.png';
 import './Home.css';
 
 type Props = {
