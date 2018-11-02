@@ -9,11 +9,13 @@ import AppGuest from './AppGuest';
 import AppHome from './AppHome';
 import { setupSession } from '../../actions/auth/login';
 import { getRoom } from '../../actions/room/getRoom';
+import { getUsers } from '../../actions/users/users';
 
 type Props = {
   authorization: string,
   startSession: Function,
   getRoomAction: Function,
+  getUsersAction: Function,
 };
 
 const mapStateToProps = state => ({
@@ -23,17 +25,19 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   startSession: item => dispatch(setupSession(item)),
   getRoomAction: item => dispatch(getRoom(item)),
+  getUsersAction: item => dispatch(getUsers(item)),
 });
 
 class App extends Component<Props> {
   componentDidMount() {
-    const { startSession, getRoomAction } = this.props;
+    const { startSession, getRoomAction, getUsersAction } = this.props;
     const token = localStorage.getItem('jwtToken');
     if (!token || token === '') {
       return;
     }
     startSession(token);
     getRoomAction(token);
+    getUsersAction(token);
   }
 
   render() {

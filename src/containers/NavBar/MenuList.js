@@ -12,17 +12,19 @@ import './NavBar.css';
 import Search from '../../components/Search/Search';
 
 type Props = {
-  rooms: [{
-    users: [],
-    _id: string,
-    name: string,
-    createdAt: number,
-    creator: {
-      alias: string,
-      email: string,
-      id: string,
-    }
-  }],
+  rooms: [
+    {
+      users: [],
+      _id: string,
+      name: string,
+      createdAt: number,
+      creator: {
+        alias: string,
+        email: string,
+        id: string,
+      },
+    },
+  ],
 };
 
 const mapStateToProps = state => ({
@@ -44,7 +46,7 @@ const MenuList = ({ rooms }: Props) => (
             </div>
           </ListItem>
         </Paper>
-          ))}
+      ))}
     </List>
   </div>
 );

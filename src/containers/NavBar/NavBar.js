@@ -45,7 +45,6 @@ const mapDispatchToProps = dispatch => ({
   getRoomAction: item => dispatch(getRoom(item)),
 });
 
-
 class NavBar extends Component<Props, State> {
   constructor() {
     super();
@@ -109,10 +108,7 @@ class NavBar extends Component<Props, State> {
     const { openDrawer } = this.state;
     return (
       <Drawer open={openDrawer} onClose={this.handleCloseDrawer}>
-        <div
-          tabIndex={0}
-          role="button"
-        >
+        <div tabIndex={0} role="button">
           <MenuList />
         </div>
       </Drawer>
@@ -158,4 +154,7 @@ class NavBar extends Component<Props, State> {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(NavBar));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(withRouter(NavBar));
