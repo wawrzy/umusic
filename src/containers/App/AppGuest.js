@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 import LoginPage from '../Auth/LoginPage';
 import RegisterPage from '../Auth/RegisterPage';
-import NotFound from '../../components/NotFound';
+import NotFound from '../../components/NotFound/NotFound';
 
 const AppGuest = () => (
   <Router>

@@ -5,7 +5,7 @@ import {
   BrowserRouter as Router, Route, Switch, Redirect,
 } from 'react-router-dom';
 import Home from '../Home/Home';
-import NotFound from '../../components/NotFound';
+import NotFound from '../../components/NotFound/NotFound';
 
 const AppHome = () => (
   <Router>
