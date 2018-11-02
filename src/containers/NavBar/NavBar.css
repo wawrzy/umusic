@@ -1,15 +1,64 @@
 .LinkDesign {
   text-decoration: none;
   color: white;
+  margin-right: 40px;
 }
+
 .Toolbar {
   display: flex;
   justify-content: space-between;
 }
+
 .alignItem {
   display: flex;
   align-items: center;
 }
+
 .SizeList {
   width: 250px;
+}
+
+.ListItem {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Paper {
+  width: 90% !important;
+  margin-top: 5px !important;
+  margin-left: 5px !important;
+  border-top: 1px solid lightgrey !important;
+}
+
+.NameList {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 200px;
+}
+
+.CreatorList {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 120px;
+  font-style: italic;
+}
+
+.ListItemText {
+  padding: 0 !important;
+}
+
+.NumberList {
+  text-align: right !important;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.HiddenOverflow {
+  overflow-x: hidden;
+}
+
+.SearchSize {
+  width: 300px;
 }

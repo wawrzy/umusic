@@ -6,6 +6,7 @@ import Home from '../Home/Home';
 import NotFound from '../../components/NotFound';
 import AppNavBar from './AppNavBar';
 import ProfilePage from '../Profile/Profile';
+import RoomPage from '../Room/Room';
 
 const AppHome = () => (
   <Router>
@@ -16,6 +17,7 @@ const AppHome = () => (
         <Redirect from="/register" to="/" />
         <Route exact path="/" component={Home} />
         <Route exact path="/profile/:id" component={ProfilePage} />
+        <Route exact path="/room/:id" component={RoomPage} />
         <Route component={NotFound} />
       </Switch>
     </div>

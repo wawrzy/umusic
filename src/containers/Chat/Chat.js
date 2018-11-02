@@ -2,42 +2,58 @@
 
 import * as React from 'react';
 import RootRef from '@material-ui/core/RootRef';
+import { connect } from 'react-redux';
 
+import getMessages from '../../actions/chat/getMessages';
+import sendMessage from '../../actions/chat/sendMessage';
 import ChatContainer from '../../components/ChatContainer/ChatContainer';
 import ChatMessage from '../../components/ChatMessage/ChatMessage';
 import InputForm from '../../components/Input/InputForm';
+import { socket } from '../../middlewares/socket';
 
 import './Chat.css';
 
+type User = {
+  alias: string,
+  id: string,
+};
+
 type Message = {
   message: string,
-  isReceived: boolean,
-  alias: string,
+  sender: User,
 };
 
-type State = {
+type Props = {
+  authorization: string,
+  fetchMessages: Function,
   messages: Message[],
+  send: Function,
+  userId: string,
+  roomId: string,
 };
 
-type Props = {};
+const mapStateToProps = state => ({
+  messages: state.chat.messages,
+  authorization: state.login.authorization,
+  userId: state.login.userId,
+});
 
-class Chat extends React.Component<Props, State> {
-  state = {
-    messages: [
-      { message: 'Ahah', isReceived: true, alias: 'ok' },
-      { message: 'Bhbh', isReceived: false, alias: 'bb' },
-      { message: 'Bhbh', isReceived: false, alias: 'bb' },
-      { message: 'Ahah', isReceived: true, alias: 'ok' },
-      { message: 'Ahah', isReceived: true, alias: 'ok' },
-      { message: 'Ahah', isReceived: true, alias: 'ok' },
-      { message: 'Bhbh', isReceived: false, alias: 'bb' },
-    ],
-  };
+const mapDispatchToProps = dispatch => ({
+  fetchMessages: (authorization, roomId) => dispatch(getMessages(authorization, roomId)),
+  send: (authorization, message) => dispatch(sendMessage(authorization, message)),
+});
 
+class Chat extends React.Component<Props> {
   chatContainer: React.Ref<typeof ChatContainer> = React.createRef();
 
   componentDidMount() {
-    this.scrollToBottom();
+    const { authorization, fetchMessages, roomId } = this.props;
+
+    fetchMessages(authorization, roomId);
+
+    socket.on('chat', () => {
+      fetchMessages(authorization, roomId);
+    });
   }
 
   componentDidUpdate() {
@@ -50,16 +66,23 @@ class Chat extends React.Component<Props, State> {
   };
 
   renderMessages: any = () => {
-    const { messages } = this.state;
+    const { messages, userId } = this.props;
 
-    return messages.map(({ message, isReceived, alias }, index) => {
+    return messages.map(({ message, sender }, index) => {
       const key = `${message}${index}`;
+      const isReceived = sender.id !== userId;
 
-      return <ChatMessage key={key} message={message} isReceived={isReceived} alias={alias} />;
+      return (
+        <ChatMessage key={key} message={message} isReceived={isReceived} alias={sender.alias} />
+      );
     });
   };
 
-  handleSend = () => {};
+  handleSend = (message: string) => {
+    const { authorization, send } = this.props;
+
+    send(authorization, message);
+  };
 
   render() {
     return (
@@ -78,4 +101,7 @@ class Chat extends React.Component<Props, State> {
   }
 }
 
-export default Chat;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Chat);

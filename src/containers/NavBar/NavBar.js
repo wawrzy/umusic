@@ -1,7 +1,9 @@
 // @flow
 
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
+
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -14,6 +16,8 @@ import Menu from '@material-ui/core/Menu';
 import MenuIcon from '@material-ui/icons/Menu';
 import Drawer from '@material-ui/core/Drawer';
 
+import { getRoom } from '../../actions/room/getRoom';
+import Search from '../../components/Search/Search';
 import MenuList from './MenuList';
 import { socket } from '../../middlewares/socket';
 
@@ -25,12 +29,22 @@ type Props = {
   userId: string,
   history: Function,
   logoutCallback: Function,
+  authorization: string,
+  getRoomAction: Function,
 };
 
 type State = {
   openProfile: boolean,
   openDrawer: boolean,
 };
+
+const mapStateToProps = state => ({
+  authorization: state.login.authorization,
+});
+
+const mapDispatchToProps = dispatch => ({
+  getRoomAction: item => dispatch(getRoom(item)),
+});
 
 class NavBar extends Component<Props, State> {
   state = {
@@ -42,7 +56,8 @@ class NavBar extends Component<Props, State> {
     socket.on('redirectroom', ({ roomId }) => {
       const { history } = this.props;
 
-      history.push(`/room/${roomId}`);
+      if (!roomId) history.push('/');
+      else history.push(`/room/${roomId}`);
     });
   }
 
@@ -59,6 +74,8 @@ class NavBar extends Component<Props, State> {
   };
 
   handleOpenDrawer = () => {
+    const { authorization, getRoomAction } = this.props;
+    getRoomAction(authorization);
     this.setState({
       openDrawer: true,
     });
@@ -100,12 +117,7 @@ class NavBar extends Component<Props, State> {
 
     return (
       <Drawer open={openDrawer} onClose={this.handleCloseDrawer}>
-        <div
-          tabIndex={0}
-          role="button"
-          onClick={this.handleCloseDrawer}
-          onKeyDown={this.handleCloseDrawer}
-        >
+        <div tabIndex={0} role="button">
           <MenuList />
         </div>
       </Drawer>
@@ -130,6 +142,9 @@ class NavBar extends Component<Props, State> {
                 </Typography>
               </Link>
             </div>
+            <div className="SearchSize">
+              <Search onChange={() => {}} />
+            </div>
             <div>
               <IconButton color="inherit">
                 <Badge badgeContent={notificationNumber} color="secondary">
@@ -148,4 +163,7 @@ class NavBar extends Component<Props, State> {
   }
 }
 
-export default withRouter(NavBar);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(withRouter(NavBar));
