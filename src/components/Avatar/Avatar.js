@@ -1,28 +1,32 @@
 // @flow
 
 import React, { Component } from 'react';
-import Avatar from '@material-ui/core/Avatar';
+import Gravatar from 'react-gravatar';
+import { withRouter } from 'react-router-dom';
 import './Avatar.css';
 
 type Props = {
-  cN: string,
-  user: string,
-  img: string,
+  email: string,
+  link: string,
+  history: Function,
+  hover: string,
+  avatarStyle: string,
 };
 
 class MyAvatar extends Component<Props> {
   handleClick = () => {
-    console.log('zezeaeazaze');
+    const { link, history } = this.props;
+    history.push(`/profile/${link}`);
   };
 
   render() {
-    const { cN, user, img } = this.props;
+    const { email, hover, styled, avatarStyle } = this.props;
     return (
-      <div onClick={this.handleClick} role="presentation" className="hoverAvatar">
-        <Avatar className={cN} alt={user} src={img} />
+      <div onClick={this.handleClick} role="presentation" className={hover}>
+        <Gravatar email={email} style={styled} className={avatarStyle} />
       </div>
     );
   }
 }
 
-export default MyAvatar;
+export default withRouter(MyAvatar);

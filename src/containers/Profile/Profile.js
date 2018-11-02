@@ -15,6 +15,8 @@ const mapStateToProps = state => ({
   users: state.getUsers,
 });
 
+const styledUser = { 'border-radius': '100px', width: '100px', height: '100px' };
+
 class Profile extends Component {
   render() {
     const { me, users } = this.props;
@@ -22,11 +24,7 @@ class Profile extends Component {
       <div className="profileComponent">
         <form onSubmit={this.onSubmit} className="all">
           <Paper className="paper" elevation={2}>
-            <Avatar
-              cN="avatar"
-              user="me"
-              img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRT4HnS1e8I3coO-06RSBo_il9PbjHX9d7I9bG2MDFqMRHwIhvWcg"
-            />
+            <Avatar email={me.email} styled={styledUser} avatarStyle="avatar" hover="displayFlex" />
             <div className="editBtnPosition">
               <Button
                 variant="fab"

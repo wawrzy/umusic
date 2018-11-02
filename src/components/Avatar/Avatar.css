@@ -8,6 +8,10 @@
   z-index: 1;
 }
 
+.displayFlex {
+  display: flex;
+}
+
 .hoverAvatar {
   cursor: pointer;
 }
