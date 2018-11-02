@@ -3,7 +3,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import Home from '../Home/Home';
-import NotFound from '../../components/NotFound';
+import NotFound from '../../components/NotFound/NotFound';
 import AppNavBar from './AppNavBar';
 import ProfilePage from '../Profile/Profile';
 import RoomPage from '../Room/Room';
