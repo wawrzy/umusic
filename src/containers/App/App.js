@@ -8,40 +8,48 @@ import theme from '../../theme';
 import AppGuest from './AppGuest';
 import AppHome from './AppHome';
 import { setupSession } from '../../actions/auth/login';
+import { getRoom } from '../../actions/room/getRoom';
 
 type Props = {
-  loginData: boolean,
+  authorization: string,
   startSession: Function,
-}
+  getRoomAction: Function,
+};
 
 const mapStateToProps = state => ({
-  loginData: state.login.loginData,
+  authorization: state.login.authorization,
 });
 
 const mapDispatchToProps = dispatch => ({
   startSession: item => dispatch(setupSession(item)),
+  getRoomAction: item => dispatch(getRoom(item)),
 });
 
 class App extends Component<Props> {
   componentDidMount() {
-    const { startSession } = this.props;
+    const { startSession, getRoomAction } = this.props;
     const token = localStorage.getItem('jwtToken');
     if (!token || token === '') {
       return;
     }
     startSession(token);
+    getRoomAction(token);
   }
 
   render() {
-    const { loginData } = this.props;
+    const { authorization } = this.props;
+
     return (
       <Provider store={store}>
         <MuiThemeProvider theme={theme}>
-          {loginData ? <AppHome /> : <AppGuest /> }
+          {authorization !== '' ? <AppHome /> : <AppGuest />}
         </MuiThemeProvider>
       </Provider>
     );
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(App);
