@@ -1,16 +1,8 @@
-/** *************************************
-** O-rizon development
-** Created by Alexy Hostetter
-** 26/10/18 - 21:07
-** Avatar.js
-** 2018 - All rights reserved
-************************************** */
-
 // @flow
 
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
-import './Profile.css';
+import '../../containers/Profile/Profile.css';
 
 type Props = {
   cN: string,

@@ -1,11 +1,3 @@
-/** *************************************
-** O-rizon development
-** Created by Alexy Hostetter
-** 26/10/18 - 10:51
-** Profil.js
-** 2018 - All rights reserved
-************************************** */
-
 // @flow
 
 import React, { Component } from 'react';
@@ -15,7 +7,7 @@ import AddIcon from '@material-ui/icons/Add';
 import TextField from '@material-ui/core/es/TextField/TextField';
 import Icon from '@material-ui/core/Icon';
 import { withStyles } from '@material-ui/core/styles';
-import Avatar from './Avatar';
+import Avatar from '../../components/Avatar/Avatar';
 import './Profile.css';
 
 const getFriends = e => (
