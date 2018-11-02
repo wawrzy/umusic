@@ -16,4 +16,4 @@ const socketMiddleware = () => next => action => {
   return next(action);
 };
 
-export default socketMiddleware;
+export { socketMiddleware, socket };

@@ -2,9 +2,13 @@
 
 import React from 'react';
 
+import Chat from '../Chat/Chat';
+import VideoPlayer from '../VideoPlayer/VideoPlayer';
+
 const ProfilePage = () => (
   <div>
-    ProfilePage
+    <VideoPlayer />
+    <Chat />
   </div>
 );
 

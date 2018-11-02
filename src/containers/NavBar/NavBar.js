@@ -19,6 +19,7 @@ import Drawer from '@material-ui/core/Drawer';
 import { getRoom } from '../../actions/room/getRoom';
 import Search from '../../components/Search/Search';
 import MenuList from './MenuList';
+import { socket } from '../../middlewares/socket';
 
 import './NavBar.css';
 
@@ -45,14 +46,19 @@ const mapDispatchToProps = dispatch => ({
   getRoomAction: item => dispatch(getRoom(item)),
 });
 
-
 class NavBar extends Component<Props, State> {
-  constructor() {
-    super();
-    this.state = {
-      openProfile: false,
-      openDrawer: false,
-    };
+  state = {
+    openProfile: false,
+    openDrawer: false,
+  };
+
+  componentDidMount() {
+    socket.on('redirectroom', ({ roomId }) => {
+      const { history } = this.props;
+
+      if (!roomId) history.push('/');
+      else history.push(`/room/${roomId}`);
+    });
   }
 
   handleOpenDropdown = () => {
@@ -92,6 +98,7 @@ class NavBar extends Component<Props, State> {
   renderMenu = () => {
     const { openProfile } = this.state;
     const { logoutCallback } = this.props;
+
     return (
       <Menu
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
@@ -107,12 +114,10 @@ class NavBar extends Component<Props, State> {
 
   renderDrawer = () => {
     const { openDrawer } = this.state;
+
     return (
       <Drawer open={openDrawer} onClose={this.handleCloseDrawer}>
-        <div
-          tabIndex={0}
-          role="button"
-        >
+        <div tabIndex={0} role="button">
           <MenuList />
         </div>
       </Drawer>
@@ -138,7 +143,7 @@ class NavBar extends Component<Props, State> {
               </Link>
             </div>
             <div className="SearchSize">
-              <Search />
+              <Search onChange={() => {}} />
             </div>
             <div>
               <IconButton color="inherit">
@@ -158,4 +163,7 @@ class NavBar extends Component<Props, State> {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(NavBar));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(withRouter(NavBar));

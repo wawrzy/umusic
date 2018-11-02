@@ -2,12 +2,12 @@
 
 import { LOGIN_SUCCESS, FETCH_PROFILE_SUCCESS, LOGIN_LOAD, LOGIN_FAILURE, LOGOUT } from './types';
 
-type dataType = {
+type loginData = {
   email: string,
   password: string,
 };
 
-export function login(data: dataType) {
+export function login(data: loginData) {
   return {
     types: [LOGIN_LOAD, LOGIN_SUCCESS, LOGIN_FAILURE],
     payload: {
@@ -15,8 +15,7 @@ export function login(data: dataType) {
         method: 'post',
         url: '/auth/signin',
         data: {
-          email: data.email,
-          password: data.password,
+          ...data,
         },
       },
     },
