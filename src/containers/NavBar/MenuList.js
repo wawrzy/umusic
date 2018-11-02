@@ -72,7 +72,7 @@ class MenuList extends React.Component<Props> {
                 <ListItemText className="CreatorList ListItemText" primary={room.creator.alias} />
                 <div className="NumberList">
                   <Person />
-                  <ListItemText className="ListItemText" primary={room.users.length + 1} />
+                  <ListItemText className="ListItemText" primary={room.users.length} />
                 </div>
               </ListItem>
             </Paper>
