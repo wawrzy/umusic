@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import Home from '../Home/Home';
 import NotFound from '../../components/NotFound/NotFound';
 import AppNavBar from './AppNavBar';
-import ProfilePage from '../Profile/Profile';
+import Profile from '../Profile/Profile';
 import RoomPage from '../Room/Room';
 
 const AppHome = () => (
@@ -16,7 +16,7 @@ const AppHome = () => (
         <Redirect from="/login" to="/" />
         <Redirect from="/register" to="/" />
         <Route exact path="/" component={Home} />
-        <Route exact path="/profile/:id" component={ProfilePage} />
+        <Route exact path="/profile/:id" component={Profile} />
         <Route exact path="/room/:id" component={RoomPage} />
         <Route component={NotFound} />
       </Switch>

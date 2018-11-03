@@ -12,6 +12,8 @@ type Props = {
   onEnterKey?: Function,
   className?: string,
   placeholder?: string,
+  defaultValue?: string,
+  readOnly?: boolean,
 };
 
 type State = {
@@ -25,11 +27,24 @@ class InputForm extends React.Component<Props, State> {
     onEnterKey: undefined,
     className: '',
     placeholder: '',
+    defaultValue: '',
+    readOnly: false,
   };
 
-  state = {
-    value: '',
-  };
+  constructor(props: Props) {
+    super(props);
+    const { defaultValue } = props;
+    if (!defaultValue) {
+      this.state = {
+        value: '',
+      }
+    }
+    else {
+      this.state = {
+        value: defaultValue,
+      }
+    }
+  }
 
   handleKeyPress = (event: any) => {
     const { onEnterKey } = this.props;
@@ -50,9 +65,8 @@ class InputForm extends React.Component<Props, State> {
   };
 
   render() {
-    const { id, name, type, className, placeholder } = this.props;
+    const { id, name, type, className, placeholder, readOnly } = this.props;
     const { value } = this.state;
-
     return (
       <TextField
         id={id}
@@ -64,6 +78,9 @@ class InputForm extends React.Component<Props, State> {
         className={className}
         placeholder={placeholder}
         value={value}
+        InputProps={{
+          readOnly,
+        }}
       />
     );
   }

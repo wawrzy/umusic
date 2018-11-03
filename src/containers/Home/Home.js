@@ -8,6 +8,7 @@ import { withRouter } from 'react-router-dom';
 import { createRoom } from '../../actions/room/create';
 import joinRoom from '../../actions/room/joinRoom';
 import InputForm from '../../components/Input/InputForm';
+
 import './Home.css';
 
 type Props = {

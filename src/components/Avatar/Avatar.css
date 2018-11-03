@@ -1,0 +1,27 @@
+.avatar {
+  display: inline-flex;
+  margin: -75px auto 0 auto;
+  justify-content: center;
+  width: 150px !important;
+  height: 150px !important;
+  position: relative;
+  z-index: 1;
+}
+
+.displayFlex {
+  display: flex;
+}
+
+.hoverAvatar {
+  cursor: pointer;
+}
+
+.friendAvatar {
+  display: flex;
+  margin-top: 3%;
+  margin-right: 5%;
+  margin-left: 5%;
+  justify-content: center;
+  width: 50px !important;
+  height: 50px !important;
+}

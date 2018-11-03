@@ -36,6 +36,7 @@ type Props = {
 type State = {
   openProfile: boolean,
   openDrawer: boolean,
+  anchorEl: any,
 };
 
 const mapStateToProps = state => ({
@@ -50,6 +51,7 @@ class NavBar extends Component<Props, State> {
   state = {
     openProfile: false,
     openDrawer: false,
+    anchorEl: null,
   };
 
   componentDidMount() {
@@ -61,15 +63,17 @@ class NavBar extends Component<Props, State> {
     });
   }
 
-  handleOpenDropdown = () => {
+  handleOpenDropdown = e => {
     this.setState({
       openProfile: true,
+      anchorEl: e.currentTarget,
     });
   };
 
   handleCloseDropdown = () => {
     this.setState({
       openProfile: false,
+      anchorEl: null,
     });
   };
 
@@ -92,17 +96,19 @@ class NavBar extends Component<Props, State> {
     history.push(`/profile/${userId}`);
     this.setState({
       openProfile: false,
+      anchorEl: null,
     });
   };
 
   renderMenu = () => {
-    const { openProfile } = this.state;
+    const { openProfile, anchorEl } = this.state;
     const { logoutCallback } = this.props;
 
     return (
       <Menu
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+        anchorEl={anchorEl}
         open={openProfile}
         onClose={this.handleCloseDropdown}
       >
