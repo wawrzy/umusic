@@ -4,6 +4,9 @@ import {
   GET_USERS_SUCCESS,
   GET_USERS_LOAD,
   GET_USERS_FAILURE,
+  EDIT_USERS_SUCCESS,
+  EDIT_USERS_LOAD,
+  EDIT_USERS_FAILURE,
 } from '../actions/users/types';
 
 type TGetUsers = {
@@ -15,6 +18,10 @@ type TGetUsers = {
   status: string,
 };
 
+type TEditUser = {
+  status: string,
+}
+
 const getUsersState = {
   users: [{
     alias: '',
@@ -24,7 +31,11 @@ const getUsersState = {
   status: '',
 };
 
-const getUsers = (state: TGetUsers = getUsersState, action: any ) => {
+const editUserState = {
+  status: '',
+};
+
+export const getUsers = (state: TGetUsers = getUsersState, action: any) => {
   switch (action.type) {
     case GET_USERS_LOAD:
       return {
@@ -47,4 +58,24 @@ const getUsers = (state: TGetUsers = getUsersState, action: any ) => {
   }
 };
 
-export default getUsers;
+export const editUser = (state: TEditUser = editUserState, action: any) => {
+  switch (action.type) {
+    case EDIT_USERS_LOAD:
+      return {
+        ...state,
+        status: '',
+      };
+    case EDIT_USERS_FAILURE:
+      return {
+        ...state,
+        status: 'Error on edit users',
+      };
+    case EDIT_USERS_SUCCESS:
+      return {
+        ...state,
+        status: 'Success on edit users',
+      };
+    default:
+      return state;
+  }
+};
