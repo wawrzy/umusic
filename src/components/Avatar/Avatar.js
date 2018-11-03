@@ -11,6 +11,11 @@ type Props = {
   history: Function,
   hover: string,
   avatarStyle: string,
+  styled: {
+    borderRadius: string,
+    width: string,
+    height: string,
+  },
 };
 
 class MyAvatar extends Component<Props> {

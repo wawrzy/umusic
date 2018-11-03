@@ -21,11 +21,17 @@ type Props = {
     authorization: string,
     userId: string,
   },
-  users: [{
-    alias: string,
-    email: string,
-    id: string,
-  }]
+  users: [
+    {
+      alias: string,
+      email: string,
+      id: string,
+    },
+  ],
+};
+
+type State = {
+  readOnly: boolean,
 };
 
 const mapDispatchToProps = dispatch => ({
@@ -34,40 +40,47 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => ({
   me: state.login,
-  users: state.getUsers,
+  users: state.getUsers.users,
 });
 
 const styledUser = { borderRadius: '100px', width: '100px', height: '100px' };
 
-class Profile extends Component<Props> {
+class Profile extends Component<Props, State> {
   state = {
     readOnly: true,
   };
 
   handleClick = () => {
-    document.getElementById('SubmitButton').style.display = 'block';
-    this.setState({
-      readOnly: false,
-    });
+    const button = document.getElementById('SubmitButton');
+    if (button) {
+      button.style.display = 'block';
+      this.setState({
+        readOnly: false,
+      });
+    }
   };
 
   onSubmit = e => {
     const { editAction, me } = this.props;
     e.preventDefault();
-    document.getElementById('SubmitButton').style.display = 'none';
-    this.setState({
-      readOnly: true,
-    });
-    editAction({
-      email: e.target.email.value,
-      alias: e.target.alias.value,
-      authorization: me.authorization,
-    });
+    const button = document.getElementById('SubmitButton');
+    if (button) {
+      button.style.display = 'none';
+      this.setState({
+        readOnly: true,
+      });
+      editAction({
+        email: e.target.email.value,
+        alias: e.target.alias.value,
+        authorization: me.authorization,
+      });
+    }
   };
 
   render() {
     const { me, users } = this.props;
     const { readOnly } = this.state;
+    if (!me.alias || !me.email) return null;
     return (
       <div className="profileComponent">
         <form onSubmit={this.onSubmit} className="all">
@@ -89,16 +102,11 @@ class Profile extends Component<Props> {
               <InputForm id="alias" defaultValue={me.alias} margin="normal" readOnly={readOnly} />
               <div className="EmailDiv"> Email </div>
               <InputForm id="email" margin="normal" defaultValue={me.email} readOnly={readOnly} />
-              <Button
-                variant="contained"
-                color="primary"
-                type="submit"
-                id="SubmitButton"
-              >
+              <Button variant="contained" color="primary" type="submit" id="SubmitButton">
                 Valid
               </Button>
             </div>
-            <Followers followers={users.users} />
+            <Followers followers={users} />
           </Paper>
         </form>
       </div>
@@ -106,4 +114,7 @@ class Profile extends Component<Props> {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Profile);
