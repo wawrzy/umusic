@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
+import ReactFlagsSelect from 'react-flags-select';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -20,6 +21,7 @@ import { getRoom } from '../../actions/room/getRoom';
 import Search from '../../components/Search/Search';
 import MenuList from './MenuList';
 import { socket } from '../../middlewares/socket';
+import 'react-flags-select/css/react-flags-select.css';
 
 import './NavBar.css';
 
@@ -146,6 +148,13 @@ class NavBar extends Component<Props, State> {
               <Search onChange={() => {}} />
             </div>
             <div>
+              <ReactFlagsSelect
+                countries={['GB', 'FR']}
+                selectedSize={17}
+                defaultCountry="FR"
+                showOptionLabel={false}
+                showSelectedLabel={false}
+              />
               <IconButton color="inherit">
                 <Badge badgeContent={notificationNumber} color="secondary">
                   <NotificationsIcon />
