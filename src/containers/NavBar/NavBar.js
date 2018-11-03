@@ -19,6 +19,7 @@ import Drawer from '@material-ui/core/Drawer';
 import { getRoom } from '../../actions/room/getRoom';
 import Search from '../../components/Search/Search';
 import MenuList from './MenuList';
+import { socket } from '../../middlewares/socket';
 
 import './NavBar.css';
 
@@ -47,11 +48,20 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class NavBar extends Component<Props, State> {
-   state = {
+  state = {
     openProfile: false,
     openDrawer: false,
     anchorEl: null,
-   };
+  };
+
+  componentDidMount() {
+    socket.on('redirectroom', ({ roomId }) => {
+      const { history } = this.props;
+
+      if (!roomId) history.push('/');
+      else history.push(`/room/${roomId}`);
+    });
+  }
 
   handleOpenDropdown = e => {
     this.setState({
@@ -93,9 +103,10 @@ class NavBar extends Component<Props, State> {
   renderMenu = () => {
     const { openProfile, anchorEl } = this.state;
     const { logoutCallback } = this.props;
+
     return (
       <Menu
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
         anchorEl={anchorEl}
         open={openProfile}
@@ -109,6 +120,7 @@ class NavBar extends Component<Props, State> {
 
   renderDrawer = () => {
     const { openDrawer } = this.state;
+
     return (
       <Drawer open={openDrawer} onClose={this.handleCloseDrawer}>
         <div tabIndex={0} role="button">
@@ -137,7 +149,7 @@ class NavBar extends Component<Props, State> {
               </Link>
             </div>
             <div className="SearchSize">
-              <Search />
+              <Search onChange={() => {}} />
             </div>
             <div>
               <IconButton color="inherit">

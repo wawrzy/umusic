@@ -54,7 +54,10 @@ class InputForm extends React.Component<Props, State> {
 
     event.preventDefault();
 
-    if (onEnterKey) onEnterKey(value);
+    if (onEnterKey) {
+      onEnterKey(value);
+      this.setState({ value: '' });
+    }
   };
 
   handleChange = (event: any) => {

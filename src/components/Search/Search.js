@@ -5,14 +5,16 @@ import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import './Search.css';
 
-const Search = () => (
+type Props = {
+  onChange: Function,
+};
+
+const Search = ({ onChange }: Props) => (
   <div className="Search">
     <div className="SearchIcon">
       <SearchIcon />
     </div>
-    <InputBase
-      placeholder="Search…"
-    />
+    <InputBase onChange={onChange} placeholder="Search…" />
   </div>
 );
 

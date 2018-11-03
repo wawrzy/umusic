@@ -11,4 +11,5 @@ configure(() => {
   require('../components/Search/Search.stories.js');
   require('../components/Avatar/Avatar.stories.js');
   require('../components/ChatMessage/ChatMessage.stories.js');
+  require('../components/VideoAction/VideoAction.stories.js');
 }, module);
