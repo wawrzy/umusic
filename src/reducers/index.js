@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { login, register } from './login';
 import { createRoom, getRoom } from './room';
-import getUsers from './users';
+import { getUsers, editUser } from './users';
 
 export default combineReducers({
   login,
@@ -9,4 +9,5 @@ export default combineReducers({
   createRoom,
   getRoom,
   getUsers,
+  editUser,
 });
