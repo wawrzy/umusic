@@ -15,7 +15,7 @@ type Props = {
   ],
 };
 
-const styledFollow = { 'border-radius': '100px', width: '50px', height: '50px' };
+const styledFollow = { borderRadius: '100px', width: '50px', height: '50px' };
 
 const Followers = ({ followers }: Props) => (
   <div>
