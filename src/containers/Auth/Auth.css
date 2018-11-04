@@ -10,11 +10,8 @@
 }
 
 .AuthPage {
-  background: linear-gradient(
-      rgba(162, 51, 56, 0.25),
-      rgba(6, 20, 162, 0.25)
-  ),
-  url('../../assets/image/register.jpg');
+  background: linear-gradient(rgba(162, 51, 56, 0.25), rgba(6, 20, 162, 0.25)),
+    url('../../assets/image/register.jpg');
   left: 0;
   top: 0;
   position: fixed;

@@ -7,28 +7,35 @@ import {
   EDIT_USERS_SUCCESS,
   EDIT_USERS_LOAD,
   EDIT_USERS_FAILURE,
+  GET_USERS_SEARCH_SUCCESS,
 } from '../actions/users/types';
 
 type TGetUsers = {
-  users: [{
-    alias: string,
-    email: string,
-    id: string,
-  }],
+  users: [
+    {
+      alias: string,
+      email: string,
+      id: string,
+    },
+  ],
   status: string,
+  suggests: string[],
 };
 
 type TEditUser = {
   status: string,
-}
+};
 
 const getUsersState = {
-  users: [{
-    alias: '',
-    email: '',
-    id: '',
-  }],
+  users: [
+    {
+      alias: '',
+      email: '',
+      id: '',
+    },
+  ],
   status: '',
+  suggests: [],
 };
 
 const editUserState = {
@@ -52,6 +59,11 @@ export const getUsers = (state: TGetUsers = getUsersState, action: any) => {
         ...state,
         users: action.payload.data,
         status: 'Success on get users',
+      };
+    case GET_USERS_SEARCH_SUCCESS:
+      return {
+        ...state,
+        suggests: action.payload.data.map(({ alias, id }) => ({ label: id, value: alias })),
       };
     default:
       return state;

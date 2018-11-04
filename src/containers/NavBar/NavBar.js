@@ -3,13 +3,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
+import { withNamespaces } from 'react-i18next';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import MenuItem from '@material-ui/core/MenuItem';
 import Typography from '@material-ui/core/Typography';
 import Menu from '@material-ui/core/Menu';
@@ -17,20 +16,26 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Drawer from '@material-ui/core/Drawer';
 
 import { getRoom } from '../../actions/room/getRoom';
+import { getUsers } from '../../actions/users/users';
 import Search from '../../components/Search/Search';
 import MenuList from './MenuList';
 import { socket } from '../../middlewares/socket';
+import Flags from '../../components/Flags/Flags';
 
 import './NavBar.css';
 
 type Props = {
   title: string,
-  notificationNumber: number,
   userId: string,
   history: Function,
   logoutCallback: Function,
   authorization: string,
   getRoomAction: Function,
+  i18n: Function,
+  t: Function,
+  suggests: string[],
+  searchUsers: Function,
+  guest: boolean,
 };
 
 type State = {
@@ -41,10 +46,12 @@ type State = {
 
 const mapStateToProps = state => ({
   authorization: state.login.authorization,
+  suggests: state.getUsers.suggests,
 });
 
 const mapDispatchToProps = dispatch => ({
   getRoomAction: item => dispatch(getRoom(item)),
+  searchUsers: (authorization, value) => dispatch(getUsers(authorization, value)),
 });
 
 class NavBar extends Component<Props, State> {
@@ -62,6 +69,19 @@ class NavBar extends Component<Props, State> {
       else history.push(`/room/${roomId}`);
     });
   }
+
+  handleSearch = (event: any) => {
+    const { searchUsers, authorization } = this.props;
+    const { value } = event.target;
+
+    searchUsers(authorization, value);
+  };
+
+  handleSuggestClick = (label: string) => {
+    const { history } = this.props;
+
+    history.push(`/profile/${label}`);
+  };
 
   handleOpenDropdown = e => {
     this.setState({
@@ -100,9 +120,15 @@ class NavBar extends Component<Props, State> {
     });
   };
 
+  handleLanguage = value => {
+    const { i18n } = this.props;
+
+    i18n.changeLanguage(value === 'GB' ? 'en' : value.toLowerCase());
+  };
+
   renderMenu = () => {
     const { openProfile, anchorEl } = this.state;
-    const { logoutCallback } = this.props;
+    const { logoutCallback, t } = this.props;
 
     return (
       <Menu
@@ -112,35 +138,69 @@ class NavBar extends Component<Props, State> {
         open={openProfile}
         onClose={this.handleCloseDropdown}
       >
-        <MenuItem onClick={this.handleProfile}>Profile</MenuItem>
-        <MenuItem onClick={logoutCallback}>Disconnection</MenuItem>
+        <MenuItem onClick={this.handleProfile}>{t('profile')}</MenuItem>
+        <MenuItem onClick={logoutCallback}>{t('logout')}</MenuItem>
       </Menu>
     );
   };
 
   renderDrawer = () => {
     const { openDrawer } = this.state;
+    const { guest } = this.props;
+
+    if (guest) return null;
 
     return (
-      <Drawer open={openDrawer} onClose={this.handleCloseDrawer}>
-        <div tabIndex={0} role="button">
-          <MenuList />
-        </div>
-      </Drawer>
+      <React.Fragment>
+        <IconButton color="inherit" onClick={this.handleOpenDrawer}>
+          <MenuIcon />
+        </IconButton>
+        <Drawer open={openDrawer} onClose={this.handleCloseDrawer}>
+          <div tabIndex={0} role="button">
+            <MenuList />
+          </div>
+        </Drawer>
+      </React.Fragment>
+    );
+  };
+
+  renderSearch = () => {
+    const { guest, suggests } = this.props;
+
+    if (guest) return null;
+
+    return (
+      <div className="SearchSize">
+        <Search
+          onChange={this.handleSearch}
+          onSuggestClick={this.handleSuggestClick}
+          suggestions={suggests}
+        />
+      </div>
+    );
+  };
+
+  renderProfile = () => {
+    const { guest } = this.props;
+
+    if (guest) return null;
+
+    return (
+      <IconButton onClick={this.handleOpenDropdown} color="inherit">
+        <AccountCircle />
+      </IconButton>
     );
   };
 
   render() {
-    const { title, notificationNumber } = this.props;
+    const { title, i18n } = this.props;
+    const browserLanguage = i18n.language === 'fr' ? 'FR' : 'GB';
 
     return (
       <div>
-        <AppBar position="static">
+        <AppBar position="static" color="primary">
           <Toolbar className="Toolbar">
             <div className="alignItem">
-              <IconButton color="inherit" onClick={this.handleOpenDrawer}>
-                <MenuIcon />
-              </IconButton>
               {this.renderDrawer()}
               <Link className="LinkDesign" to="/">
                 <Typography variant="title" color="inherit">
@@ -148,18 +208,15 @@ class NavBar extends Component<Props, State> {
                 </Typography>
               </Link>
             </div>
-            <div className="SearchSize">
-              <Search onChange={() => {}} />
-            </div>
-            <div>
-              <IconButton color="inherit">
-                <Badge badgeContent={notificationNumber} color="secondary">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
-              <IconButton onClick={this.handleOpenDropdown} color="inherit">
-                <AccountCircle />
-              </IconButton>
+            {this.renderSearch()}
+            <div className="Options">
+              <Flags
+                customLabels={{ GB: 'en', FR: 'fr' }}
+                countries={['GB', 'FR']}
+                defaultCountry={browserLanguage}
+                onSelect={this.handleLanguage}
+              />
+              {this.renderProfile()}
             </div>
           </Toolbar>
         </AppBar>
@@ -172,4 +229,4 @@ class NavBar extends Component<Props, State> {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(withRouter(NavBar));
+)(withRouter(withNamespaces('navbar')(NavBar)));

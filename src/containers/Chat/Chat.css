@@ -6,15 +6,32 @@
   padding: 8px;
 }
 
-.ChatWidth {
-  width: 35%;
-  padding: 8px;
-  display: flex;
-  flex-direction: column;
-  overflow: auto;
-  max-height: 400px;
+@media (max-width: 600px) {
+  .ChatWidth {
+    width: 90%;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    max-height: 400px;
+  }
+
+  .ChatInput {
+    width: 90% !important;
+  }
 }
 
-.ChatInput {
-  width: 35% !important;
+@media (min-width: 600px) {
+  .ChatWidth {
+    width: 35%;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    max-height: 400px;
+  }
+
+  .ChatInput {
+    width: 35% !important;
+  }
 }

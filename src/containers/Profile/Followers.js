@@ -5,14 +5,14 @@ import Typography from '@material-ui/core/Typography';
 import Avatar from '../../components/Avatar/Avatar';
 import './Profile.css';
 
+type Follower = {
+  alias: string,
+  email: string,
+  id: string,
+};
+
 type Props = {
-  followers: [
-    {
-      alias: string,
-      email: string,
-      id: string,
-    },
-  ],
+  followers: Follower[],
 };
 
 const styledFollow = { borderRadius: '100px', width: '50px', height: '50px' };

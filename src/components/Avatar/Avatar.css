@@ -1,19 +1,39 @@
-.avatar {
-  display: inline-flex;
-  margin: -75px auto 0 auto;
-  justify-content: center;
-  width: 150px !important;
-  height: 150px !important;
-  position: relative;
-  z-index: 1;
+@media (max-width: 600px) {
+  .avatar {
+    display: inline-flex;
+    justify-content: center;
+    width: 150px !important;
+    height: 150px !important;
+    position: relative;
+    z-index: 1;
+  }
+
+  .displayFlex {
+    display: flex;
+    padding: 16px;
+    justify-content: center;
+  }
 }
 
-.displayFlex {
-  display: flex;
+@media (min-width: 600px) {
+  .avatar {
+    display: inline-flex;
+    margin: -75px auto 0 auto;
+    justify-content: center;
+    width: 150px !important;
+    height: 150px !important;
+    position: relative;
+    z-index: 1;
+  }
+
+  .displayFlex {
+    display: flex;
+  }
 }
 
 .hoverAvatar {
   cursor: pointer;
+  padding: 8px;
 }
 
 .friendAvatar {

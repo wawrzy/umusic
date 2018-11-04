@@ -82,7 +82,7 @@ class VideoPlayer extends React.Component<Props, State> {
 
   componentDidUpdate(prevProps: Props, prevState: State) {
     const { videoId, isOwner } = this.state;
-    const { roomId, rooms, userId } = this.props;
+    const { roomId, rooms, userId, current, authorization } = this.props;
 
     if (videoId && videoId !== prevState.videoId && this.playerRef.current)
       this.playerRef.current.internalPlayer.playVideo();
@@ -93,6 +93,9 @@ class VideoPlayer extends React.Component<Props, State> {
     if (owner !== isOwner) {
       // eslint-disable-next-line
       this.setState({ isOwner: owner });
+    }
+    if (roomId !== prevProps.roomId) {
+      current(authorization);
     }
   }
 

@@ -1,5 +1,5 @@
 @keyframes animation {
-  0%   {
+  0% {
     transform: translateX(-10%);
     opacity: 0;
   }
@@ -9,7 +9,7 @@
   }
 }
 
-@media (min-height: 400px) and (min-width: 400px){
+@media (min-height: 600px) and (min-width: 600px) {
   .AuthContainer {
     animation-name: animation;
     animation-timing-function: ease-out;
@@ -29,23 +29,13 @@
   }
 }
 
-@media (max-height: 400px) {
+@media (max-width: 600px) {
   .AuthContainer {
     left: 0;
     top: 0;
     height: 100vh;
     background-color: rgba(238, 238, 238, 0.9);
-    padding: 5px 20px 20px 20px;
-    overflow-y: auto;
-  }
-}
-@media (max-width: 400px) {
-  .AuthContainer {
-    left: 0;
-    top: 0;
-    height: 100vh;
-    background-color: rgba(238, 238, 238, 0.9);
-    padding: 5px 20px 20px 20px;
+    padding: 50px 20px 20px 20px;
     overflow-y: auto;
   }
 }

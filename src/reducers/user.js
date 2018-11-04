@@ -1,12 +1,10 @@
 // @flow
 
 import {
+  FETCH_FOLLOWING_SUCCESS,
   FETCH_USER_ERROR,
   FETCH_USER_LOAD,
   FETCH_USER_SUCCESS,
-  SEARCH_USERS_ERROR,
-  SEARCH_USERS_LOAD,
-  SEARCH_USERS_SUCCESS,
 } from '../actions/user/types';
 
 type User = {
@@ -18,6 +16,7 @@ type User = {
 type TUser = {
   user: ?User,
   users: User[],
+  following: User[],
   error: string,
 };
 
@@ -25,11 +24,13 @@ const initState = {
   user: null,
   error: '',
   users: [],
+  following: [],
 };
 
 const user = (state: TUser = initState, action: any) => {
   switch (action.type) {
     case FETCH_USER_ERROR:
+      window.location = `${window.origin}/404`;
       return {
         ...state,
         error: 'Fail to fetch user',
@@ -49,21 +50,11 @@ const user = (state: TUser = initState, action: any) => {
         },
         error: '',
       };
-    case SEARCH_USERS_ERROR:
-      return {
-        ...state,
-        error: 'Fail to search users',
-      };
-    case SEARCH_USERS_LOAD:
+    case FETCH_FOLLOWING_SUCCESS:
       return {
         ...state,
         error: '',
-      };
-    case SEARCH_USERS_SUCCESS:
-      return {
-        ...state,
-        users: action.payload.data,
-        error: '',
+        following: action.payload.data,
       };
     default:
       return state;

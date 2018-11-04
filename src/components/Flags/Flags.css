@@ -1,0 +1,7 @@
+.arrow-down {
+  color: transparent !important;
+}
+
+.flag-select .arrow-down {
+  display: none !important;
+}

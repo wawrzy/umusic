@@ -1,6 +1,13 @@
 // @flow
 
-import { LOGIN_SUCCESS, FETCH_PROFILE_SUCCESS, LOGIN_LOAD, LOGIN_FAILURE, LOGOUT } from './types';
+import {
+  LOGIN_SUCCESS,
+  FETCH_PROFILE_SUCCESS,
+  FETCH_PROFILE_ERROR,
+  LOGIN_LOAD,
+  LOGIN_FAILURE,
+  LOGOUT,
+} from './types';
 
 type loginData = {
   email: string,
@@ -36,7 +43,7 @@ export function setupSession(authorization: string) {
 
 export function fetchProfile(authorization: string) {
   return {
-    types: [LOGIN_LOAD, FETCH_PROFILE_SUCCESS, LOGIN_FAILURE],
+    types: [LOGIN_LOAD, FETCH_PROFILE_SUCCESS, FETCH_PROFILE_ERROR],
     payload: {
       request: {
         method: 'get',

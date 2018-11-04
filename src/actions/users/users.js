@@ -5,6 +5,7 @@ import {
   GET_USERS_LOAD,
   GET_USERS_FAILURE,
   EDIT_USERS_SUCCESS,
+  GET_USERS_SEARCH_SUCCESS,
   EDIT_USERS_LOAD,
   EDIT_USERS_FAILURE,
 } from './types';
@@ -19,13 +20,17 @@ type authorizationType = {
   authorization: string,
 };
 
-export function getUsers(authorization: authorizationType) {
+export function getUsers(authorization: authorizationType, alias?: string) {
   return {
-    types: [GET_USERS_LOAD, GET_USERS_SUCCESS, GET_USERS_FAILURE],
+    types: [
+      GET_USERS_LOAD,
+      alias === undefined ? GET_USERS_SUCCESS : GET_USERS_SEARCH_SUCCESS,
+      GET_USERS_FAILURE,
+    ],
     payload: {
       request: {
         method: 'get',
-        url: '/users',
+        url: `/users${alias !== undefined ? `?alias=${alias === '' ? 'è!' : alias}` : ''}`,
         headers: { Authorization: authorization },
       },
     },
@@ -43,7 +48,7 @@ export function editUser(data: dataType) {
         data: {
           alias: data.alias,
           email: data.email,
-        }
+        },
       },
     },
   };

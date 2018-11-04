@@ -14,6 +14,8 @@ type Props = {
   placeholder?: string,
   defaultValue?: string,
   readOnly?: boolean,
+  required?: boolean,
+  minlength?: string,
 };
 
 type State = {
@@ -29,6 +31,8 @@ class InputForm extends React.Component<Props, State> {
     placeholder: '',
     defaultValue: '',
     readOnly: false,
+    required: false,
+    minlength: undefined,
   };
 
   constructor(props: Props) {
@@ -37,12 +41,11 @@ class InputForm extends React.Component<Props, State> {
     if (!defaultValue) {
       this.state = {
         value: '',
-      }
-    }
-    else {
+      };
+    } else {
       this.state = {
         value: defaultValue,
-      }
+      };
     }
   }
 
@@ -65,12 +68,14 @@ class InputForm extends React.Component<Props, State> {
   };
 
   render() {
-    const { id, name, type, className, placeholder, readOnly } = this.props;
+    const { id, name, required, type, className, placeholder, readOnly, minlength } = this.props;
     const { value } = this.state;
     return (
       <TextField
+        minlength={minlength}
         id={id}
         label={name}
+        required={required}
         type={type}
         margin="normal"
         onKeyPress={this.handleKeyPress}

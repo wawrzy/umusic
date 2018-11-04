@@ -1,6 +1,15 @@
-.ChatMessage {
-  box-sizing: content-box;
-  max-width: 60%;
+@media (max-width: 600px) {
+  .ChatMessage {
+    box-sizing: content-box;
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 600px) {
+  .ChatMessage {
+    box-sizing: content-box;
+    max-width: 60%;
+  }
 }
 
 .message-receive {

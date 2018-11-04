@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { withNamespaces } from 'react-i18next';
 
 import { createRoom } from '../../actions/room/create';
 import joinRoom from '../../actions/room/joinRoom';
@@ -15,6 +16,7 @@ type Props = {
   createAction: Function,
   authorization: string,
   join: Function,
+  t: Function,
 };
 
 const mapStateToProps = state => ({
@@ -33,7 +35,7 @@ class Home extends Component<Props> {
 
     createAction({
       name: e.target.name.value,
-      password: e.target.password.value,
+      password: '',
       authorization,
     }).then(room => {
       if (room.payload) join(room.payload.data._id, authorization, '');
@@ -41,22 +43,18 @@ class Home extends Component<Props> {
   };
 
   render() {
+    const { t } = this.props;
+
     return (
       <div>
         <div className="ImageBackground" />
         <form className="FormPosition" onSubmit={this.onSubmit}>
           <div className="DisplayFlexColumn">
-            <InputForm id="name" name="Name of the Room" type="default" autoComplete="off" />
-            <InputForm
-              id="password"
-              name="Password (optional)"
-              type="password"
-              autoComplete="off"
-            />
+            <InputForm id="name" name={t('roomName')} type="default" autoComplete="off" />
           </div>
           <div className="ButtonAlign">
             <Button variant="contained" color="primary" type="submit">
-              Create Room
+              {t('createRoom')}
             </Button>
           </div>
         </form>
@@ -68,4 +66,4 @@ class Home extends Component<Props> {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(withRouter(Home));
+)(withRouter(withNamespaces('room')(Home)));

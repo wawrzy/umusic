@@ -4,8 +4,9 @@ import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { login } from '../../actions/auth/login';
+import { withNamespaces } from 'react-i18next';
 
+import { login } from '../../actions/auth/login';
 import InputForm from '../../components/Input/InputForm';
 import AuthContainer from '../../components/AuthContainer/AuthContainer';
 import SnackbarContainer from '../../components/SnackbarContainer/SnackbarContainer';
@@ -15,6 +16,7 @@ import './Auth.css';
 type Props = {
   loginAction: Function,
   error: string,
+  t: Function,
 };
 
 const mapStateToProps = state => ({
@@ -42,22 +44,24 @@ class LoginPage extends Component<Props> {
   };
 
   render() {
+    const { t } = this.props;
+
     return (
       <div className="AuthPage">
         <AuthContainer>
           <form onSubmit={this.onSubmit}>
             <div className="DisplayFlexColumn">
-              <InputForm id="email" name="Email" type="default" />
-              <InputForm id="password" name="Password" type="password" />
+              <InputForm id="email" name={t('email')} type="email" required />
+              <InputForm id="password" name={t('password')} type="password" required />
             </div>
             <div className="ButtonAlign">
               <Link className="LinkDesign" to="/register">
                 <Button variant="contained" color="secondary" type="submit">
-                  Register
+                  {t('register')}
                 </Button>
               </Link>
               <Button variant="contained" color="primary" type="submit">
-                Login
+                {t('login')}
               </Button>
             </div>
           </form>
@@ -71,4 +75,4 @@ class LoginPage extends Component<Props> {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(LoginPage);
+)(withNamespaces('auth')(LoginPage));

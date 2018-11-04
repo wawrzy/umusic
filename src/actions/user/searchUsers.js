@@ -1,35 +1,73 @@
 // @flow
 
 import {
-  SEARCH_USERS_SUCCESS,
-  SEARCH_USERS_ERROR,
-  SEARCH_USERS_LOAD,
+  FETCH_FOLLOWING_ERROR,
+  FETCH_FOLLOWING_LOAD,
+  FETCH_FOLLOWING_SUCCESS,
+  FOLLOW_USER_ERROR,
+  FOLLOW_USER_LOAD,
+  FOLLOW_USER_SUCCESS,
   FETCH_USER_ERROR,
   FETCH_USER_LOAD,
+  UNFOLLOW_USER_ERROR,
+  UNFOLLOW_USER_LOAD,
+  UNFOLLOW_USER_SUCCESS,
   FETCH_USER_SUCCESS,
 } from './types';
 
-export function searchUsers(alias?: string) {
-  const url = alias ? `/api/users?alias=${alias}` : '/api/users';
-
+export function followUser(authorization: string, userId: string) {
   return {
-    types: [SEARCH_USERS_LOAD, SEARCH_USERS_SUCCESS, SEARCH_USERS_ERROR],
+    types: [FOLLOW_USER_LOAD, FOLLOW_USER_SUCCESS, FOLLOW_USER_ERROR],
     payload: {
       request: {
-        method: 'get',
-        url,
+        method: 'post',
+        url: '/users/follow',
+        headers: { Authorization: authorization },
+        data: {
+          userId,
+        },
       },
     },
   };
 }
 
-export function fetchUser(id: string) {
+export function unfollowUser(authorization: string, userId: string) {
+  return {
+    types: [UNFOLLOW_USER_LOAD, UNFOLLOW_USER_SUCCESS, UNFOLLOW_USER_ERROR],
+    payload: {
+      request: {
+        method: 'post',
+        url: '/users/unfollow',
+        headers: { Authorization: authorization },
+        data: {
+          userId,
+        },
+      },
+    },
+  };
+}
+
+export function fetchFollowing(authorization: string, userId: string) {
+  return {
+    types: [FETCH_FOLLOWING_LOAD, FETCH_FOLLOWING_SUCCESS, FETCH_FOLLOWING_ERROR],
+    payload: {
+      request: {
+        method: 'get',
+        url: `/users/followers/${userId}`,
+        headers: { Authorization: authorization },
+      },
+    },
+  };
+}
+
+export function fetchUser(authorization: string, id: string) {
   return {
     types: [FETCH_USER_LOAD, FETCH_USER_SUCCESS, FETCH_USER_ERROR],
     payload: {
       request: {
         method: 'get',
-        url: `/api/users/${id}`,
+        url: `/users/${id}`,
+        headers: { Authorization: authorization },
       },
     },
   };
