@@ -17,14 +17,8 @@
   width: 100%;
   text-align: center;
   justify-items: center;
-  margin-top: 10%;
+  margin-top: 20%;
   font-weight: bold !important;
-}
-
-@media (max-height: 740px) {
-  .contain {
-    margin-top: 20%;
-  }
 }
 
 .title {
