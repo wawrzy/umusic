@@ -72,7 +72,7 @@ class InputForm extends React.Component<Props, State> {
     const { value } = this.state;
     return (
       <TextField
-        minlength={minlength}
+        minLength={minlength}
         id={id}
         label={name}
         required={required}
