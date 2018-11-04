@@ -42,7 +42,10 @@ Le code sera review par les autres membres du groupe. Si tout est OK, la branche
 
 ## Pour les développeurs
  - Les technologies utilisées sont react, redux, flow, eslint, material-ui, i18n	
- - Lancer le projet sur le serveur local : `yarn dev`
+ - Lancer le projet sur le serveur local : `yarn dev` > <http://localhost:3000>
+ - Un storybook est en place pour pouvoir tester les features sans avoir besoin d'aller sur l'application.
+ Pour le lancer : `yarn storybook` > <http://localhost:9009>
+
 
 ## Comment contribuer
  - Créer une branche feature/nom_feature
