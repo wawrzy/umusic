@@ -1,3 +1,8 @@
+[![Build Status](https://travis-ci.org/wawrzy/umusic-backend.svg?branch=master)](https://travis-ci.org/wawrzy/umusic)
+[![Storybook](https://github.com/storybooks/press/blob/master/badges/storybook.svg)](https://storybook.js.org/)
+
+
+
 # Umusic FrontEnd
 
 [Umusic](https://umusic-frontend.herokuapp.com/)
