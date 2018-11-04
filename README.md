@@ -41,7 +41,7 @@ Le code sera review par les autres membres du groupe. Si tout est OK, la branche
 ```
 
 ## Pour les développeurs
- - Les technologies utilisées sont react, redux, flow, eslint, material-ui, i18n	
+ - Les technologies utilisées sont react, redux, flow, eslint, material-ui, i18n, jest
  - Lancer le projet sur le serveur local : `yarn dev` > <http://localhost:3000>
  - Un storybook est en place pour pouvoir tester les features sans avoir besoin d'aller sur l'application.
  Pour le lancer : `yarn storybook` > <http://localhost:9009>
@@ -51,6 +51,7 @@ Le code sera review par les autres membres du groupe. Si tout est OK, la branche
  - Créer une branche feature/nom_feature
  - Dévelloper la feature
  - Vérifier flow et eslint avec `yarn flow` et `yarn lint`
+ - Lancer les tests `yarn test` :pray:
  - Faire une pull request :rocket:
 
 ## Version
@@ -65,5 +66,3 @@ Le code sera review par les autres membres du groupe. Si tout est OK, la branche
  - Bourgeay William - Epitech
  - Wawrzyniak Julien - Epitech
  - Hostetter Alexy - Epitech
-
----
