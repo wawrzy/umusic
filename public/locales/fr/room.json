@@ -1,5 +1,6 @@
 {
-  "roomName": "Nom de la Room",
+  "roomName": "Nom du salon",
   "password": "Mot de passe (optionnel)",
-  "createRoom": "Création de la Room"
+  "deleteRoom": "Supprimer le salon",
+  "createRoom": "Création du salon"
 }

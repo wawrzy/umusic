@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
 
-const isProd = !process.env.TESTING;
+const isProd = process.env.NODE_ENV !== 'development';
 
 const socket = io(isProd ? 'https://umusic-backend.herokuapp.com' : 'http://localhost:3100');
 

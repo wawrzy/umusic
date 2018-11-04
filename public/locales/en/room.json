@@ -1,5 +1,6 @@
 {
   "roomName": "Name of the Room",
   "password": "Password (optional)",
-  "createRoom": "Create Room"
+  "createRoom": "Create Room",
+  "deleteRoom": "Delete room"
 }
