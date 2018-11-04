@@ -7,17 +7,20 @@ import axiosMiddleware from 'redux-axios-middleware';
 import reducers from '../reducers';
 import { socketMiddleware } from '../middlewares/socket';
 
+const production = process.env.PROD;
+
 const client = axios.create({
-  baseURL: 'http://localhost:3100/api',
+  baseURL: production ? 'https://umusic-backend.herokuapp.com/api' : 'http://localhost:3100/api',
   responseType: 'json',
 });
 
-const middleware = applyMiddleware(
-  thunkMiddleware,
-  axiosMiddleware(client),
-  logger,
-  socketMiddleware,
-);
+let middleware = null;
+
+if (production) {
+  middleware = applyMiddleware(thunkMiddleware, axiosMiddleware(client), socketMiddleware);
+} else {
+  middleware = applyMiddleware(thunkMiddleware, axiosMiddleware(client), logger, socketMiddleware);
+}
 
 const store = createStore(reducers, middleware);
 
