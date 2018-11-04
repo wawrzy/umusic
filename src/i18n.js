@@ -3,7 +3,7 @@ import Backend from 'i18next-xhr-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { reactI18nextModule } from 'react-i18next';
 
-const isProd = !process.env.TESTING;
+const isProd = process.env.NODE_ENV !== 'development';
 
 i18n
   .use(Backend)

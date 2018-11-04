@@ -7,7 +7,7 @@ import axiosMiddleware from 'redux-axios-middleware';
 import reducers from '../reducers';
 import { socketMiddleware } from '../middlewares/socket';
 
-const isProd = false;
+const isProd = process.env.NODE_ENV !== 'development';
 
 const client = axios.create({
   baseURL: isProd ? 'https://umusic-backend.herokuapp.com/api' : 'http://localhost:3100/api',

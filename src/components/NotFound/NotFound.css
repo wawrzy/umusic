@@ -17,14 +17,8 @@
   width: 100%;
   text-align: center;
   justify-items: center;
-  margin-top: 10%;
+  margin-top: 20%;
   font-weight: bold !important;
-}
-
-@media (max-height: 740px) {
-  .contain {
-    margin-top: 0;
-  }
 }
 
 .title {
@@ -39,4 +33,8 @@
   font-size: 80px !important;
   text-shadow:0 0 5px black !important;
   margin-bottom: 3% !important;
+}
+
+.LinkDesign {
+  text-decoration: none;
 }

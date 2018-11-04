@@ -1,28 +1,28 @@
+// @flow
+
 import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
+import { withNamespaces } from 'react-i18next';
+
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import './NotFound.css';
 
-const NotFound = () => (
+const NotFound = ({t}: Function) => (
   <div className="container">
     <div className="contain">
       <div>
         <Typography className="title">
-          404 Not Found
+          {t('notFound')}
         </Typography>
       </div>
-      <div className="message">
-        <Typography className="message">
-          Return to Umusic
-        </Typography>
-      </div>
-      <a href="/">
+      <Link className="LinkDesign" to="/">
         <Button variant="contained" color="primary" className="button">
-          Home Page
+          {t('button')}
         </Button>
-      </a>
+      </Link>
     </div>
   </div>
 );
 
-export default NotFound;
+export default withRouter(withNamespaces('notFound')(NotFound));

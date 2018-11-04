@@ -3,6 +3,8 @@
 import * as React from 'react';
 import RootRef from '@material-ui/core/RootRef';
 import { connect } from 'react-redux';
+import { withNamespaces } from 'react-i18next';
+import Typography from '@material-ui/core/Typography';
 
 import getMessages from '../../actions/chat/getMessages';
 import sendMessage from '../../actions/chat/sendMessage';
@@ -30,6 +32,7 @@ type Props = {
   send: Function,
   userId: string,
   roomId: string,
+  t: Function,
 };
 
 const mapStateToProps = state => ({
@@ -88,6 +91,7 @@ class Chat extends React.Component<Props> {
   };
 
   render() {
+    const { t } = this.props;
     return (
       <div className="Chat">
         <RootRef rootRef={this.chatContainer}>
@@ -99,6 +103,7 @@ class Chat extends React.Component<Props> {
           placeholder="Message"
           id="ChatInput"
         />
+        <Typography>{t('howTo')}</Typography>
       </div>
     );
   }
@@ -107,4 +112,4 @@ class Chat extends React.Component<Props> {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Chat);
+)(withNamespaces('chat')(Chat));
