@@ -26,7 +26,7 @@ type State = {
   searchValue: string,
 };
 
-export class Search extends React.Component<Props, State> {
+export class SearchBar extends React.Component<Props, State> {
   static defaultProps = {
     suggestions: [],
     onSuggestClick: () => {},
@@ -91,4 +91,4 @@ export class Search extends React.Component<Props, State> {
   }
 }
 
-export default withNamespaces('navbar')(Search);
+export default withNamespaces('navbar')(SearchBar);

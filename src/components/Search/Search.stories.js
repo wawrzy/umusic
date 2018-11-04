@@ -1,11 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import Search from './Search';
+import { SearchBar } from './Search';
 
 const stories = storiesOf('Search', module);
 
-stories
-  .add('Search', () => (
-    <Search />
-  ));
-
+stories.add('Search', () => <SearchBar onChange={() => {}} t={() => 'Search'} />);
