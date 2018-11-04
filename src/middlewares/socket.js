@@ -1,6 +1,8 @@
 import io from 'socket.io-client';
 
-const socket = io('http://localhost:3100');
+const isProd = !process.env.TESTING;
+
+const socket = io(isProd ? 'https://umusic-backend.herokuapp.com' : 'http://localhost:3100');
 
 const socketMiddleware = () => next => action => {
   if (action === null) return null;
