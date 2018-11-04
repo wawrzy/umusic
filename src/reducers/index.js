@@ -3,6 +3,7 @@ import { login, register } from './login';
 import { createRoom, getRoom, joinRoom } from './room';
 import chat from './chat';
 import user from './user';
+import { getUsers, editUser } from './users';
 
 export default combineReducers({
   login,
@@ -12,4 +13,6 @@ export default combineReducers({
   joinRoom,
   chat,
   user,
+  getUsers,
+  editUser,
 });

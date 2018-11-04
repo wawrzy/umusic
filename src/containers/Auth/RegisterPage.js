@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
+import { withNamespaces } from 'react-i18next';
 
 import { register } from '../../actions/auth/register';
 import InputForm from '../../components/Input/InputForm';
@@ -17,6 +18,7 @@ type Props = {
   history: Function,
   error: string,
   status: string,
+  t: Function,
 };
 
 const mapStateToProps = state => ({
@@ -36,10 +38,7 @@ class RegisterPage extends Component<Props> {
       email: e.target.email.value,
       password: e.target.password.value,
       alias: e.target.alias.value,
-    }).then(
-      res =>
-        !res.error ? setTimeout(() => history.push('/login'), 500) : null,
-    );
+    }).then(res => (!res.error ? setTimeout(() => history.push('/login'), 500) : null));
   };
 
   renderError = () => {
@@ -55,23 +54,31 @@ class RegisterPage extends Component<Props> {
   };
 
   render() {
+    const { t } = this.props;
+
     return (
       <div className="AuthPage">
         <AuthContainer>
           <form onSubmit={this.onSubmit}>
             <div className="DisplayFlexColumn">
-              <InputForm id="email" name="Email" type="default" />
-              <InputForm id="alias" name="Pseudo" type="default" />
-              <InputForm id="password" name="Password" type="password" />
+              <InputForm id="email" name={t('email')} type="email" required />
+              <InputForm id="alias" name={t('alias')} type="default" required />
+              <InputForm
+                id="password"
+                minlength="4"
+                name={t('password')}
+                type="password"
+                required
+              />
             </div>
             <div className="ButtonAlign">
               <Link className="LinkDesign" to="/login">
                 <Button variant="contained" color="secondary" type="submit">
-                  Login
+                  {t('login')}
                 </Button>
               </Link>
               <Button variant="contained" color="primary" type="submit">
-                Register
+                {t('register')}
               </Button>
             </div>
           </form>
@@ -85,4 +92,4 @@ class RegisterPage extends Component<Props> {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(withRouter(RegisterPage));
+)(withRouter(withNamespaces('auth')(RegisterPage)));

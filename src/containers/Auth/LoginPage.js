@@ -51,8 +51,8 @@ class LoginPage extends Component<Props> {
         <AuthContainer>
           <form onSubmit={this.onSubmit}>
             <div className="DisplayFlexColumn">
-              <InputForm id="email" name="Email" type="default" />
-              <InputForm id="password" name="Password" type="password" />
+              <InputForm id="email" name={t('email')} type="email" required />
+              <InputForm id="password" name={t('password')} type="password" required />
             </div>
             <div className="ButtonAlign">
               <Link className="LinkDesign" to="/register">

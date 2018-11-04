@@ -22,9 +22,8 @@ const mapDispatchToProps = dispatch => ({
 
 class Room extends React.Component<Props> {
   componentWillUnmount() {
-    const { leave, authorization } = this.props;
-
-    leave(authorization);
+    //    const { leave, authorization } = this.props;
+    //    leave(authorization);
   }
 
   render() {

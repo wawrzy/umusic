@@ -1,15 +1,38 @@
-.Search {
-  position: relative;
-  border-radius: 4px;
-  display: inline-flex;
-  background-color: rgba(255, 255, 255, .15);
-  padding: 5px 5px 0 5px;
-  width: 100%;
+@media (min-width: 600px) {
+  .Search {
+    position: relative;
+    box-sizing: border-box;
+    border-radius: 4px;
+    display: inline-flex;
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 5px 5px 0 5px;
+    width: 100%;
+  }
 }
+
+@media (max-width: 600px) {
+  .Search {
+    display: none;
+  }
+}
+
 .Search:hover {
-  background-color: rgba(255, 255, 255, .25);
+  background-color: rgba(255, 255, 255, 0.25);
 }
 
 .SearchIcon {
   margin-right: 10px;
+}
+
+.Container {
+  position: relative;
+}
+
+.SuggestContainer {
+  left: 0;
+  right: 0;
+  z-index: 1;
+  position: absolute;
+  margin-top: 4px;
+  box-sizing: inherit;
 }

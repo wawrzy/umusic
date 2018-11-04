@@ -12,6 +12,10 @@ type Props = {
   onEnterKey?: Function,
   className?: string,
   placeholder?: string,
+  defaultValue?: string,
+  readOnly?: boolean,
+  required?: boolean,
+  minlength?: string,
 };
 
 type State = {
@@ -25,11 +29,25 @@ class InputForm extends React.Component<Props, State> {
     onEnterKey: undefined,
     className: '',
     placeholder: '',
+    defaultValue: '',
+    readOnly: false,
+    required: false,
+    minlength: undefined,
   };
 
-  state = {
-    value: '',
-  };
+  constructor(props: Props) {
+    super(props);
+    const { defaultValue } = props;
+    if (!defaultValue) {
+      this.state = {
+        value: '',
+      };
+    } else {
+      this.state = {
+        value: defaultValue,
+      };
+    }
+  }
 
   handleKeyPress = (event: any) => {
     const { onEnterKey } = this.props;
@@ -50,13 +68,14 @@ class InputForm extends React.Component<Props, State> {
   };
 
   render() {
-    const { id, name, type, className, placeholder } = this.props;
+    const { id, name, required, type, className, placeholder, readOnly, minlength } = this.props;
     const { value } = this.state;
-
     return (
       <TextField
+        minlength={minlength}
         id={id}
         label={name}
+        required={required}
         type={type}
         margin="normal"
         onKeyPress={this.handleKeyPress}
@@ -64,6 +83,9 @@ class InputForm extends React.Component<Props, State> {
         className={className}
         placeholder={placeholder}
         value={value}
+        InputProps={{
+          readOnly,
+        }}
       />
     );
   }

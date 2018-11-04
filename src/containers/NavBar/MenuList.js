@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
+
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -34,6 +35,10 @@ type Props = {
   searchRooms: Function,
 };
 
+type State = {
+  searchValue: string,
+};
+
 const mapStateToProps = state => ({
   rooms: state.getRoom.rooms,
   authorization: state.login.authorization,
@@ -43,12 +48,18 @@ const mapDispatchToProps = dispatch => ({
   join: (roomId, authorization, passsword) => dispatch(joinRoom(roomId, authorization, passsword)),
   searchRooms: (authorization, name) => dispatch(getRoom(authorization, `?name=${name}`)),
 });
-class MenuList extends React.Component<Props> {
+class MenuList extends React.Component<Props, State> {
+  state = {
+    searchValue: '',
+  };
+
   handleJoin = room => {
     const { _id } = room;
-    const { authorization, join } = this.props;
+    const { authorization, join, searchRooms } = this.props;
+    const { searchValue } = this.state;
 
     join(_id, authorization, '');
+    setTimeout(() => searchRooms(authorization, searchValue), 200);
   };
 
   handleSearch = (event: any) => {
@@ -56,6 +67,7 @@ class MenuList extends React.Component<Props> {
     const { value } = event.target;
 
     searchRooms(authorization, value);
+    this.setState({ searchValue: value });
   };
 
   render() {

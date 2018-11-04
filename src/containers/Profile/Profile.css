@@ -1,0 +1,135 @@
+.ProfileContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 600px) {
+  .PaperShadow {
+    box-shadow: none !important;
+    border-radius: 0 !important;
+  }
+
+  .ProfileContainer .Paper {
+    width: 100% !important;
+    margin: 0 !important;
+    height: 100% !important;
+  }
+
+  .editBtnPosition {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    padding: 16px;
+  }
+
+  .InputWidth {
+    width: 90%;
+  }
+}
+
+@media (min-width: 600px) {
+  .ProfileContainer .Paper {
+    width: 90%;
+    margin: 15% 5% 50% 5% !important;
+    height: 50%;
+    display: inline-block;
+  }
+
+  .editBtnPosition {
+    position: relative;
+    z-index: 1;
+    margin: -100px 25% 3% 75%;
+  }
+
+  .InputWidth {
+    width: 30%;
+  }
+}
+
+.CoverPicture {
+  left: 0;
+  top: 0;
+  bottom: 100%;
+  right: 100%;
+  position: fixed;
+  width: 100%;
+  height: 60%;
+  background-image: url('../../assets/image/background-1.jpg');
+  background-size: cover;
+  z-index: -1;
+}
+
+.paper {
+  margin: 15% 5% 50% 5%;
+  padding-bottom: 50%;
+  width: 90%;
+  height: 60%;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.editBtn {
+  width: 50px !important;
+  height: 50px !important;
+}
+
+.list {
+  margin-top: 70px !important;
+  font-weight: bold !important;
+  font-size: 30px !important;
+  width: 40% !important;
+  padding-right: auto !important;
+  padding-left: auto !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+.listAvatar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+  padding: 16px;
+}
+
+.infoTxt {
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.validateBtn {
+  justify-content: center;
+  font-weight: bold;
+}
+
+.AliasDiv {
+  width: 200px;
+  font-weight: bold;
+}
+
+.EmailDiv {
+  width: 200px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.ProfileInfos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.ProfileInfos .ProfileAlias {
+  font-weight: bold;
+  padding: 8px;
+}
+
+.ProfileInfos .ProfileEmail {
+  padding: 8px;
+}

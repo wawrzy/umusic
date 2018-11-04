@@ -12,6 +12,7 @@ type Props = {
   logout: Function,
   getProfile: Function,
   authorization: string,
+  guest?: boolean,
 };
 
 const mapStateToProps = state => ({
@@ -25,6 +26,10 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class AppNavBar extends Component<Props> {
+  static defaultProps = {
+    guest: false,
+  };
+
   componentDidMount() {
     const { getProfile, authorization } = this.props;
 
@@ -39,13 +44,15 @@ class AppNavBar extends Component<Props> {
   };
 
   render() {
-    const { userId } = this.props;
+    const { userId, guest } = this.props;
+
     return (
       <NavBar
         title="Umusic"
         notificationNumber={0}
         logoutCallback={this.logoutCallback}
         userId={userId}
+        guest={guest}
       />
     );
   }

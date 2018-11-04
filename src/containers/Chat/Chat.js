@@ -56,8 +56,11 @@ class Chat extends React.Component<Props> {
     });
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps: Props) {
+    const { authorization, roomId, fetchMessages } = this.props;
     this.scrollToBottom();
+
+    if (roomId !== prevProps.roomId) fetchMessages(authorization, roomId);
   }
 
   scrollToBottom = () => {
