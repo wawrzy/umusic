@@ -66,8 +66,6 @@ class VideoPlayer extends React.Component<Props, State> {
     const { current, authorization } = this.props;
 
     socket.on('playvideo', ({ videoId }) => {
-      console.log(videoId);
-
       this.setState({ videoId });
     });
 

@@ -7,10 +7,7 @@ import Chat from '../Chat/Chat';
 import VideoPlayer from '../VideoPlayer/VideoPlayer';
 import leaveRoom from '../../actions/room/leaveRoom';
 
-type Props = {
-  leave: Function,
-  authorization: string,
-};
+type Props = {};
 
 const mapStateToProps = state => ({
   authorization: state.login.authorization,
@@ -21,10 +18,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class Room extends React.Component<Props> {
-  componentWillUnmount() {
-    //    const { leave, authorization } = this.props;
-    //    leave(authorization);
-  }
+  componentWillUnmount() {}
 
   render() {
     const roomId = window.location
