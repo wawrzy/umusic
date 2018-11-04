@@ -7,6 +7,7 @@ import { withRouter } from 'react-router-dom';
 import { withNamespaces } from 'react-i18next';
 
 import { createRoom } from '../../actions/room/create';
+import { getRoom } from '../../actions/room/getRoom';
 import joinRoom from '../../actions/room/joinRoom';
 import InputForm from '../../components/Input/InputForm';
 
@@ -17,6 +18,7 @@ type Props = {
   authorization: string,
   join: Function,
   t: Function,
+  fetchRooms: Function,
 };
 
 const mapStateToProps = state => ({
@@ -26,11 +28,12 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   createAction: item => dispatch(createRoom(item)),
   join: (roomId, authorization, passsword) => dispatch(joinRoom(roomId, authorization, passsword)),
+  fetchRooms: authorization => dispatch(getRoom(authorization)),
 });
 
 class Home extends Component<Props> {
   onSubmit = e => {
-    const { createAction, authorization, join } = this.props;
+    const { createAction, authorization, join, fetchRooms } = this.props;
     e.preventDefault();
 
     createAction({
@@ -38,7 +41,10 @@ class Home extends Component<Props> {
       password: '',
       authorization,
     }).then(room => {
-      if (room.payload) join(room.payload.data._id, authorization, '');
+      if (room.payload) {
+        join(room.payload.data._id, authorization, '');
+        fetchRooms(authorization);
+      }
     });
   };
 

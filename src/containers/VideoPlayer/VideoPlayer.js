@@ -99,6 +99,12 @@ class VideoPlayer extends React.Component<Props, State> {
     }
   }
 
+  componentWillUnmount() {
+    socket.off('playvideo');
+    socket.off('continuevideo');
+    socket.off('pausevideo');
+  }
+
   handleEnd = () => {
     const { playNext, authorization } = this.props;
     const { isOwner } = this.state;
