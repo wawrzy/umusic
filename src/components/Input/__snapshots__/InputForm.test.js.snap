@@ -4,7 +4,7 @@ exports[`InputForm should render an Input Form 1`] = `
 <div
   aria-describedby={undefined}
   className="MuiFormControl-root-1 MuiFormControl-marginNormal-2"
-  minlength={undefined}
+  minLength={undefined}
   onKeyPress={[Function]}
 >
   
@@ -41,7 +41,7 @@ exports[`InputForm should render an Input Form with name 1`] = `
 <div
   aria-describedby={undefined}
   className="MuiFormControl-root-1 MuiFormControl-marginNormal-2"
-  minlength={undefined}
+  minLength={undefined}
   onKeyPress={[Function]}
 >
   <label
@@ -84,7 +84,7 @@ exports[`InputForm should render an Input Form with type 1`] = `
 <div
   aria-describedby={undefined}
   className="MuiFormControl-root-1 MuiFormControl-marginNormal-2"
-  minlength={undefined}
+  minLength={undefined}
   onKeyPress={[Function]}
 >
   
