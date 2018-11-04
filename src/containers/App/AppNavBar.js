@@ -31,9 +31,15 @@ class AppNavBar extends Component<Props> {
   };
 
   componentDidMount() {
-    const { getProfile, authorization } = this.props;
+    const { getProfile, authorization, history, guest, logout } = this.props;
 
-    getProfile(authorization);
+    getProfile(authorization).then(err => {
+      if (err.error && !guest) {
+        localStorage.removeItem('jwtToken');
+        logout('');
+        history.push('/login');
+      }
+    });
   }
 
   logoutCallback = () => {
