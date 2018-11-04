@@ -3,14 +3,15 @@ import Backend from 'i18next-xhr-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { reactI18nextModule } from 'react-i18next';
 
+const production = process.env.PROD;
+
 i18n
   .use(Backend)
   .use(LanguageDetector)
   .use(reactI18nextModule)
   .init({
     fallbackLng: 'fr',
-    debug: true,
-
+    debug: !production,
     interpolation: {
       escapeValue: false,
     },
