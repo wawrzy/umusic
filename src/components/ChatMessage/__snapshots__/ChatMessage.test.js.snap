@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChatMessage should render a ChatMessage not receive 1`] = `
+<div
+  className="padding-8"
+>
+  <p
+    className="MuiTypography-root-1 MuiTypography-body1-10 alias"
+  >
+    
+  </p>
+  <div
+    aria-describedby="cond"
+    className="MuiPaper-root-36 MuiPaper-elevation4-42 ChatMessage message-send"
+  >
+    <p
+      className="MuiTypography-root-1 MuiTypography-body1-10 padding-12 color-text-send"
+    >
+      mess
+    </p>
+  </div>
+</div>
+`;
+
+exports[`ChatMessage should render a ChatMessage receive 1`] = `
+<div
+  className="padding-8"
+>
+  <p
+    className="MuiTypography-root-1 MuiTypography-body1-10 alias"
+  >
+    hehe
+  </p>
+  <div
+    aria-describedby="cond"
+    className="MuiPaper-root-36 MuiPaper-elevation4-42 ChatMessage message-receive"
+  >
+    <p
+      className="MuiTypography-root-1 MuiTypography-body1-10 padding-12 color-text-receive"
+    >
+      mess
+    </p>
+  </div>
+</div>
+`;

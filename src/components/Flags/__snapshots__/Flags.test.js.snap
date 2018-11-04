@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Flags should render a Flags 1`] = `
+<div
+  className="flag-select arrow-down"
+>
+  <div
+    className="selected--flag--option "
+    onClick={[Function]}
+    onKeyUp={[Function]}
+    style={
+      Object {
+        "fontSize": "20px",
+      }
+    }
+    tabIndex="0"
+  >
+    <span
+      className="country-flag"
+      style={
+        Object {
+          "height": "20px",
+          "width": "20px",
+        }
+      }
+    >
+      <img
+        src="fr.svg"
+      />
+    </span>
+    <span
+      className="arrow-down "
+    >
+      ▾
+    </span>
+  </div>
+</div>
+`;

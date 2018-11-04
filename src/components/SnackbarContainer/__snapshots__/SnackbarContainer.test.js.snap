@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SnackbarContainer should render a SnackbarContainer error 1`] = `null`;
+
+exports[`SnackbarContainer should render a SnackbarContainer success 1`] = `null`;

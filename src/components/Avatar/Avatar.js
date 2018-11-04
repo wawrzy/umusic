@@ -18,7 +18,7 @@ type Props = {
   },
 };
 
-class MyAvatar extends Component<Props> {
+export class MyAvatar extends Component<Props> {
   handleClick = () => {
     const { link, history } = this.props;
     history.push(`/profile/${link}`);

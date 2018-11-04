@@ -26,7 +26,7 @@ type State = {
   searchValue: string,
 };
 
-class Search extends React.Component<Props, State> {
+export class Search extends React.Component<Props, State> {
   static defaultProps = {
     suggestions: [],
     onSuggestClick: () => {},

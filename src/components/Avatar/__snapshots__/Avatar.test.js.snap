@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MyAvatar should render a MyAvatar 1`] = `
+<div
+  className="displayFlex"
+  onClick={[Function]}
+  role="presentation"
+>
+  <img
+    alt="Gravatar for wawrzyniakjulien@gmail.com"
+    className="react-gravatar"
+    height={50}
+    src="//www.gravatar.com/avatar/24ee74d518b120620baa1f722b5edc0d?d=retro&r=g&s=50"
+    srcSet="//www.gravatar.com/avatar/24ee74d518b120620baa1f722b5edc0d?d=retro&r=g&s=100 2x"
+    style={Object {}}
+    width={50}
+  />
+</div>
+`;

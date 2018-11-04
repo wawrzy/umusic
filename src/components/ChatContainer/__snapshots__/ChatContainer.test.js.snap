@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChatContainer should render a ChatContainer 1`] = `
+<div
+  className="MuiPaper-root-1 MuiPaper-elevation3-6 MuiPaper-rounded-2 ChatContainer "
+>
+  <div />
+</div>
+`;
