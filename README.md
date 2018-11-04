@@ -7,7 +7,7 @@
 
 [Umusic](https://umusic-frontend.herokuapp.com/)
 
-## Règles et worklfow
+## Règles et workflow
 
 Le workflow git utilisé dans le cadre de ce projet est le GitFlow.
 Nous préconisons vivement à tous les developpeurs de lire la documentation suivante: https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow
